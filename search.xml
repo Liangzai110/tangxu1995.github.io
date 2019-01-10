@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[bilibili之视频信息爬虫]]></title>
+    <url>%2Fbilibili-videoInfo%2F</url>
+    <content type="text"><![CDATA[视频信息同样在打开 F12 开发者工具后被找到了， 单线程完整代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364import requestsimport jsonimport timeimport pymongoclass videoInfo_Spider(object): def __init__(self, aid): self.video_url = 'https://api.bilibili.com/x/web-interface/archive/stat?aid=&#123;&#125;'.format(aid) self.headers = &#123; 'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Mobile Safari/537.36', &#125; def get_source(self, url): time.sleep(0.4) response = requests.get(url, headers=self.headers) if response.status_code == 200: return response.json() else: print('访问出错') def parse(self, items): if items.get('data'): info = items.get('data') id = info.get('aid') view = info.get('view') danmaku = info.get('danmaku') reply = info.get('reply') favorite = info.get('favorite') coin = info.get('coin') share = info.get('share') yield &#123; 'id': id, '观看数': view, '弹幕数': danmaku, '喜欢数': favorite, '回复数': reply, '硬币数': coin, '分享数': share &#125; def save_to_mongo(self, item): client = pymongo.MongoClient('localhost', 27017) db = client['BILIBILI'] collection = db['videoInfo'] if collection.insert(item): print('保存到MongoDB成功') def run(self): html = self.get_source(self.video_url) items = self.parse(html) for item in items: print(item) self.save_to_mongo(item)if __name__ == '__main__': time1 = time.time() for aid in range(1, 40000890): spider = videoInfo_Spider(aid) spider.run() time2 = time.time() print('cost time: %s' % (time2-time1))]]></content>
+      <categories>
+        <category>爬虫</category>
+      </categories>
+      <tags>
+        <tag>爬虫</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[bilibili之弹幕爬虫]]></title>
+    <url>%2Fbilibili_danmu%2F</url>
+    <content type="text"><![CDATA[按照正常流程，打开网页，然后右键网页源代码，网页中并没有类似弹幕的文字出现，猜想应该是通过某些接口或者其它什么途径传过来的数据。 打开 F12 开发者工具，查看 Network 下的请求，看看是不是弹幕隐藏在其中某个文件内，找了好久，竟然没有发现，后来发现其中一个前缀为 list.so?oid=xxxx的链接 在 Preview 模式下不显示数据，将其 url 用浏览器打开后却出现了我想要的弹幕数据。如下图所示。 既然找到了源文件，那爬虫就很好写了。 下载并分析弹幕 xml 文件创建一个爬虫类，然后定义 get_file 方法来请求并下载弹幕文件，然后使用 parse_danmus 方法来分析弹幕，弹幕信息都是 d 标签下，由此得到弹幕信息。1234567891011121314151617181920212223242526272829class Danmu_Spider(object): def __init__(self): self.danmu_url = 'https://api.bilibili.com/x/v1/dm/list.so?oid=57763167' self.headers = &#123; 'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Mobile Safari/537.36', &#125; def get_file(self, url): response = requests.get(url, headers=self.headers) if response.status_code == 200: with open('danmu.xml', 'wb') as f: f.write(response.content) else: print('访问出错') def parse_danmus(self, file): selector = etree.parse(file, etree.HTMLParser()) items = selector.xpath("//d//text()") return items def run(self): self.get_file(self.danmu_url) danmus = self.parse_danmus('danmu.xml') print(danmus)if __name__ == "__main__": spider = Danmu_Spider() spider.run() 在图中可以看到成功爬取到了弹幕信息，数量为3000，和文章开头视频右边弹幕信息的数量一致，但是我这里将弹幕使用了集合去重，保留了有效弹幕。 完整代码1234567891011121314151617181920212223242526272829303132333435import requestsfrom lxml import etreeclass Danmu_Spider(object): def __init__(self): self.danmu_url = 'https://api.bilibili.com/x/v1/dm/list.so?oid=57763167' self.headers = &#123; 'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Mobile Safari/537.36', &#125; def get_file(self, url): response = requests.get(url, headers=self.headers) if response.status_code == 200: with open('danmu.xml', 'wb') as f: f.write(response.content) else: print('访问出错') def parse_danmus(self, file): selector = etree.parse(file, etree.HTMLParser()) items = selector.xpath("//d//text()") items = set(items) return items def run(self): self.get_file(self.danmu_url) danmus = self.parse_danmus('danmu.xml') print('弹幕数量: %s'% len(danmus)) print(danmus)if __name__ == "__main__": spider = Danmu_Spider() spider.run()]]></content>
+      <categories>
+        <category>爬虫</category>
+      </categories>
+      <tags>
+        <tag>爬虫</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[flask]]></title>
     <url>%2Fflask%2F</url>
     <content type="text"></content>
