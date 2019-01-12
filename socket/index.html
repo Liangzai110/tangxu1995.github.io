@@ -105,7 +105,8 @@
 <meta property="og:description" content="Python 网络编程使用的主要模块是 socket 模块，在这个模块中可以找到 socket() 函数，该函数用于创建套接字对象。套接字也有自己的方法集，这些方法可以实现基于套接字的网络通信。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://hexo-pics.nos-eastchina1.126.net/python/udp.png">
-<meta property="og:updated_time" content="2019-01-12T06:22:39.309Z">
+<meta property="og:image" content="https://hexo-pics.nos-eastchina1.126.net/python/udp1.png">
+<meta property="og:updated_time" content="2019-01-12T06:34:49.923Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python中的网络编程">
 <meta name="twitter:description" content="Python 网络编程使用的主要模块是 socket 模块，在这个模块中可以找到 socket() 函数，该函数用于创建套接字对象。套接字也有自己的方法集，这些方法可以实现基于套接字的网络通信。">
@@ -338,7 +339,7 @@
                 
               
 
-              <time title="创建时间：2019-01-12 13:48:00 / 修改时间：14:22:39" itemprop="dateCreated datePublished" datetime="2019-01-12T13:48:00+08:00">2019-01-12</time>
+              <time title="创建时间：2019-01-12 13:48:00 / 修改时间：14:34:49" itemprop="dateCreated datePublished" datetime="2019-01-12T13:48:00+08:00">2019-01-12</time>
             
 
             
@@ -406,7 +407,10 @@
 <p>然后使用 sendto() 方法可以发送信息，代码如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data = input(<span class="string">"请输入你想要发送的信息："</span>)</span><br><span class="line"><span class="comment"># sendto(data, (ip, port))</span></span><br><span class="line">udpSock.sendto(data.encode(<span class="string">'gb2312'</span>), (<span class="string">'172.16.217.129'</span>, <span class="number">8080</span>))</span><br></pre></td></tr></table></figure></p>
 <p>这里使用 mac 向 windows 发送一段信息，由于 windows 软件以 gb2312 解码，因此在 Python 代码中需要把要发送的信息编码成 gb2312，如图。</p>
 <p><img src="https://hexo-pics.nos-eastchina1.126.net/python/udp.png" alt=""></p>
-<h2 id="UDP-服务器的创建"><a href="#UDP-服务器的创建" class="headerlink" title="UDP 服务器的创建"></a>UDP 服务器的创建</h2><p>同上先创建一个套接字对象，因为服务器就像我们的</p>
+<h2 id="UDP-服务器的创建"><a href="#UDP-服务器的创建" class="headerlink" title="UDP 服务器的创建"></a>UDP 服务器的创建</h2><p>同上先创建一个套接字对象，和创建客户端不同，服务器需要绑定到某一个地址上，只有这样客户端才知道如何给服务器发送信息。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</span><br><span class="line">udpSock = socket(AF_INET, SOCK_DGRAM)</span><br><span class="line"><span class="comment"># 绑定到 7788 端口</span></span><br><span class="line">udpSock.bind((<span class="string">""</span>, <span class="number">7788</span>))</span><br><span class="line">udpSock.recvfrom(<span class="number">1024</span>)</span><br><span class="line">content, ip = udpdata</span><br><span class="line">print(ip, <span class="string">":"</span>, content.decode(<span class="string">"gb2312"</span>))</span><br></pre></td></tr></table></figure></p>
+<p>这次使用 windows 向 mac 发送信息，如图。</p>
+<p><img src="https://hexo-pics.nos-eastchina1.126.net/python/udp1.png" alt=""></p>
+<hr>
 
       
     </div>
