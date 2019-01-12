@@ -1388,7 +1388,7 @@ pre .javascript .function {
   margin: 0 auto 25px;
 }
 .posts-expand .post-body img {
-  margin: 0 auto 25px;
+  margin: 0 auto 25px;!important
 }
 @media (max-width: 767px) {
   .posts-collapse {
@@ -1882,7 +1882,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff7f34;
+  background: #c1ff01;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2759,7 +2759,7 @@ hr {
   }
 }
 .posts-expand .post-body img {
-  margin: 0;
+  margin:0 auto;!important
 }
 .posts-expand .post-tags {
   text-align: left;
