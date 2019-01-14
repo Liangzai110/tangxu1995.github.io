@@ -1319,6 +1319,16 @@ pre .javascript .function {
 .use-motion .collection-title {
   opacity: 0;
 }
+.post-body p a {
+  color: #0593d3;
+  border-bottom: none;
+  border-bottom: 1px solid #0593d3;
+}
+.post-body p a:hover {
+  color: #fc6423;
+  border-bottom: none;
+  border-bottom: 1px solid #fc6423;
+}
 .posts-expand {
   padding-top: 40px;
 }
@@ -1388,7 +1398,7 @@ pre .javascript .function {
   margin: 0 auto 25px;
 }
 .posts-expand .post-body img {
-  margin: 0 auto 25px;!important
+  margin: 0 auto 25px;
 }
 @media (max-width: 767px) {
   .posts-collapse {
@@ -1882,7 +1892,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #c1ff01;
+  background: #5dac7e;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2759,7 +2769,7 @@ hr {
   }
 }
 .posts-expand .post-body img {
-  margin:0 auto;!important
+  margin: 0;
 }
 .posts-expand .post-tags {
   text-align: left;
