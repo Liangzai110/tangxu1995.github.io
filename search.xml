@@ -52,14 +52,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[七牛云数据迁移至网易nos]]></title>
-    <url>%2Fqiniu%2F</url>
-    <content type="text"><![CDATA[哇哇哇，才几天没写博客，今天想去七牛云上传个图片，上传几次都没成功，而且之前的图片也查看不了，发现页面有提示：5402 获取bucket域名失败，才发现七牛云的测试域名被回收了呀，想继续用的话得绑定个已备案的域名，要备案域名还得买个主机，就只用七牛做个图床，太麻烦了。而且之前上传的图片现在无法预览，也无法下载，难受。不过百度后发现可以进行数据迁移，做此记录。 使用 qshell 将 bucket 文件迁移到新 bucket 中安装 qshell 工具。下载地址：qshell 官方文档将下载下来的压缩文件解压到任意目录，将其中的名字为 darwin 的文件重命名为 qshell 并放入 mac 的 /usr/local/bin 目录，最后在命令行输入 qshell 。 密钥设置这里需要使用七牛账号中个人密钥管理下的 AccessKey 和 SecretKey 。 找到这两个值后在命令行中输入如下命令。(其中 ak 和 sk 分别对应 AccessKey 和 SecretKey ， name 为账户名称)1$ qshell account ak sk name 如果没有报错的话，输入以下命令来显示账号信息。1$ qshell account 迁移文件使用如下命令进行文件迁移并生成包含文件名的文本文件。 12$ qshell listbucket &#123; bucket_name &#125; | awk -F"\t" '&#123;print $1&#125;' &gt; files.txt$ qshell batchcopy &#123; bucket_name &#125; &#123; new_bucket_name &#125; -i files.txt 批量下载文件到本地上面只是将旧桶内的文件转移到新的桶内，原本无法预览、下载的文件现在都可以正常操作了，可是里面有很多图片总不能从网页上一张一张下载下来然后再上传到其他的储存空间里吧，因此这里就需要思考如何将图片批量下载到本地磁盘。七牛云的 qshell 工具有 qdownload 方法能批量下载文件，但是尝试多次均以失败告终，后看到 qshell 的 get 方法只能每次操作一个文件，如果让电脑代替人工去重复操作这一 get 方法，就可以把每一张图片都下载下来。 python 脚本代码如下：1234567import osimport linecachefor num in range(1, total_num): result = linecache.getline('./files.txt', num).strip() print(result) os.system('/usr/local/bin/qshell get test ' + result) 上传至网易 nos网易nos 的注册与创建桶的过程不再过多介绍，需要注意的是在创建储存桶完毕之后要进行两个关键的配置。 存储桶（bucket）访问权限 防盗链设置 1、访问权限 访问权限应设置为公有读。如图中解释： 2、防盗链设置 为了保护自己的免费额度，防止图片被他人盗用，因此需要开启防盗链。]]></content>
-      <categories>
-        <category>日常</category>
-      </categories>
-  </entry>
-  <entry>
     <title><![CDATA[Pycharm]]></title>
     <url>%2FPycharm%2F</url>
     <content type="text"><![CDATA[内存报错 The IDE is running low on memory有时候在 mac 和 windows 系统上使用 PyCharm 时，会提醒 The IDE is running low on memory ，然后看了下内存占用，明明内存够，百度后发现是软件本身设置的内存较小。在 mac 系统中，PyCharm 操作如下： 1.打开 Help -&gt; Find Action 2.在搜索框中输入 VM Options , 点击进入第一条结果 3.将这里的 -Xmx750m 中的 750 改成想设置的内存大小]]></content>
@@ -70,6 +62,14 @@
       <tags>
         <tag>Pycharm</tag>
       </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[七牛云数据迁移至网易nos]]></title>
+    <url>%2Fqiniu%2F</url>
+    <content type="text"><![CDATA[使用 qshell 将 bucket 文件迁移到新 bucket 中安装 qshell 工具。下载地址：qshell 官方文档将下载下来的压缩文件解压到任意目录，将其中的名字为 darwin 的文件重命名为 qshell 并放入 mac 的 /usr/local/bin 目录，最后在命令行输入 qshell 。 密钥设置这里需要使用七牛账号中个人密钥管理下的 AccessKey 和 SecretKey 。 找到这两个值后在命令行中输入如下命令。(其中 ak 和 sk 分别对应 AccessKey 和 SecretKey ， name 为账户名称)1$ qshell account ak sk name 如果没有报错的话，输入以下命令来显示账号信息。1$ qshell account 迁移文件使用如下命令进行文件迁移并生成包含文件名的文本文件。 12$ qshell listbucket &#123; bucket_name &#125; | awk -F"\t" '&#123;print $1&#125;' &gt; files.txt$ qshell batchcopy &#123; bucket_name &#125; &#123; new_bucket_name &#125; -i files.txt 批量下载文件到本地上面只是将旧桶内的文件转移到新的桶内，原本无法预览、下载的文件现在都可以正常操作了，可是里面有很多图片总不能从网页上一张一张下载下来然后再上传到其他的储存空间里吧，因此这里就需要思考如何将图片批量下载到本地磁盘。七牛云的 qshell 工具有 qdownload 方法能批量下载文件，但是尝试多次均以失败告终，后看到 qshell 的 get 方法只能每次操作一个文件，如果让电脑代替人工去重复操作这一 get 方法，就可以把每一张图片都下载下来。 python 脚本代码如下：1234567import osimport linecachefor num in range(1, total_num): result = linecache.getline('./files.txt', num).strip() print(result) os.system('/usr/local/bin/qshell get test ' + result) 上传至网易 nos网易nos 的注册与创建桶的过程不再过多介绍，需要注意的是在创建储存桶完毕之后要进行两个关键的配置。 存储桶（bucket）访问权限 防盗链设置 1、访问权限 访问权限应设置为公有读。如图中解释： 2、防盗链设置 为了保护自己的免费额度，防止图片被他人盗用，因此需要开启防盗链。]]></content>
+      <categories>
+        <category>日常</category>
+      </categories>
   </entry>
   <entry>
     <title><![CDATA[PHP框架--Laravel]]></title>

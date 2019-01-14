@@ -131,26 +131,6 @@
   </entry>
   
   <entry>
-    <title>七牛云数据迁移至网易nos</title>
-    <link href="http://yoursite.com/qiniu/"/>
-    <id>http://yoursite.com/qiniu/</id>
-    <published>2018-11-28T05:52:03.000Z</published>
-    <updated>2019-01-03T07:52:56.440Z</updated>
-    
-    <content type="html"><![CDATA[<hr><p><img src="https://hexo-pics.nos-eastchina1.126.net/qiniu/qiniulogo.png" alt=""></p><hr><p>哇哇哇，才几天没写博客，今天想去七牛云上传个图片，上传几次都没成功，而且之前的图片也查看不了，发现页面有提示：<code>5402 获取bucket域名失败</code>，才发现七牛云的测试域名被回收了呀，想继续用的话得绑定个已备案的域名，要备案域名还得买个主机，就只用七牛做个图床，太麻烦了。而且之前上传的图片现在无法预览，也无法下载，难受。不过百度后发现可以进行数据迁移，做此记录。</p><h1 id="使用-qshell-将-bucket-文件迁移到新-bucket-中"><a href="#使用-qshell-将-bucket-文件迁移到新-bucket-中" class="headerlink" title="使用 qshell 将 bucket 文件迁移到新 bucket 中"></a>使用 qshell 将 bucket 文件迁移到新 bucket 中</h1><h2 id="安装-qshell-工具。下载地址：qshell-官方文档"><a href="#安装-qshell-工具。下载地址：qshell-官方文档" class="headerlink" title="安装 qshell 工具。下载地址：qshell 官方文档"></a>安装 qshell 工具。下载地址：<a href="http://devtools.qiniu.com/qshell-v2.3.3.zip" target="_blank" rel="noopener">qshell</a> <a href="https://developer.qiniu.com/kodo/tools/1302/qshell" target="_blank" rel="noopener">官方文档</a></h2><p>将下载下来的压缩文件解压到任意目录，将其中的名字为 darwin 的文件重命名为 qshell 并放入 mac 的 /usr/local/bin <a href="https://www.jianshu.com/p/9a6dca7ccfa0" target="_blank" rel="noopener">目录</a>，最后在命令行输入 qshell 。</p><p><img src="https://hexo-pics.nos-eastchina1.126.net/qiniu/qshell1.png" alt=""></p><h2 id="密钥设置"><a href="#密钥设置" class="headerlink" title="密钥设置"></a>密钥设置</h2><p>这里需要使用七牛账号中<a href="https://portal.qiniu.com/user/key" target="_blank" rel="noopener">个人密钥管理</a>下的 AccessKey 和 SecretKey 。</p><p>找到这两个值后在命令行中输入如下命令。(其中 ak 和 sk 分别对应 AccessKey 和 SecretKey ， name 为账户名称)<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ qshell account ak sk <span class="built_in">name</span></span><br></pre></td></tr></table></figure></p><p>如果没有报错的话，输入以下命令来显示账号信息。<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>qshell account</span><br></pre></td></tr></table></figure></p><h2 id="迁移文件"><a href="#迁移文件" class="headerlink" title="迁移文件"></a>迁移文件</h2><p>使用如下命令进行文件迁移并生成包含文件名的文本文件。</p><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span> qshell listbucket &#123; bucket_name &#125; | awk -F<span class="string">"\t"</span> <span class="string">'&#123;print $1&#125;'</span> &gt; <span class="keyword">files</span>.txt</span><br><span class="line"><span class="symbol">$</span> qshell batchcopy &#123; bucket_name &#125; &#123; new_bucket_name &#125; -i <span class="keyword">files</span>.txt</span><br></pre></td></tr></table></figure><h1 id="批量下载文件到本地"><a href="#批量下载文件到本地" class="headerlink" title="批量下载文件到本地"></a>批量下载文件到本地</h1><p>上面只是将旧桶内的文件转移到新的桶内，原本无法预览、下载的文件现在都可以正常操作了，可是里面有很多图片总不能从网页上一张一张下载下来然后再上传到其他的储存空间里吧，因此这里就需要思考如何将图片批量下载到本地磁盘。七牛云的 qshell 工具有 <a href="https://github.com/qiniu/qshell/blob/master/docs/qdownload.md" target="_blank" rel="noopener"><code>qdownload</code></a> 方法能批量下载文件，但是尝试多次均以失败告终，后看到 qshell 的 <a href="https://github.com/qiniu/qshell/blob/master/docs/get.md" target="_blank" rel="noopener"><code>get</code></a> 方法只能每次操作一个文件，如果让电脑代替人工去重复操作这一 get 方法，就可以把每一张图片都下载下来。</p><p>python 脚本代码如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> linecache</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> num <span class="keyword">in</span> range(<span class="number">1</span>, total_num):</span><br><span class="line">    result = linecache.getline(<span class="string">'./files.txt'</span>, num).strip()</span><br><span class="line">    print(result)</span><br><span class="line">    os.system(<span class="string">'/usr/local/bin/qshell get test '</span> + result)</span><br></pre></td></tr></table></figure></p><h1 id="上传至网易-nos"><a href="#上传至网易-nos" class="headerlink" title="上传至网易 nos"></a>上传至网易 nos</h1><p><a href="https://c.163yun.com/dashboard#/m/nos/" target="_blank" rel="noopener">网易nos</a> 的注册与创建桶的过程不再过多介绍，需要注意的是在创建储存桶完毕之后要进行两个关键的配置。</p><ul><li><p>存储桶（bucket）访问权限</p></li><li><p>防盗链设置</p></li></ul><p>1、访问权限</p><p>访问权限应设置为公有读。如图中解释：</p><p><img src="https://hexo-pics.nos-eastchina1.126.net/qiniu/rwpro.png" alt=""></p><p>2、防盗链设置</p><p>为了保护自己的免费额度，防止图片被他人盗用，因此需要开启防盗链。</p><p><img src="https://hexo-pics.nos-eastchina1.126.net/qiniu/fdl.png" alt=""></p><hr>]]></content>
-    
-    <summary type="html">
-    
-      aadsad
-    
-    </summary>
-    
-      <category term="日常" scheme="http://yoursite.com/categories/%E6%97%A5%E5%B8%B8/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>Pycharm</title>
     <link href="http://yoursite.com/Pycharm/"/>
     <id>http://yoursite.com/Pycharm/</id>
@@ -171,6 +151,26 @@
     
     
       <category term="Pycharm" scheme="http://yoursite.com/tags/Pycharm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>七牛云数据迁移至网易nos</title>
+    <link href="http://yoursite.com/qiniu/"/>
+    <id>http://yoursite.com/qiniu/</id>
+    <published>2018-10-28T05:52:03.000Z</published>
+    <updated>2019-01-14T15:37:36.233Z</updated>
+    
+    <content type="html"><![CDATA[<hr><p><img src="https://hexo-pics.nos-eastchina1.126.net/qiniu/qiniulogo.png" alt=""></p><hr><h1 id="使用-qshell-将-bucket-文件迁移到新-bucket-中"><a href="#使用-qshell-将-bucket-文件迁移到新-bucket-中" class="headerlink" title="使用 qshell 将 bucket 文件迁移到新 bucket 中"></a>使用 qshell 将 bucket 文件迁移到新 bucket 中</h1><h2 id="安装-qshell-工具。下载地址：qshell-官方文档"><a href="#安装-qshell-工具。下载地址：qshell-官方文档" class="headerlink" title="安装 qshell 工具。下载地址：qshell 官方文档"></a>安装 qshell 工具。下载地址：<a href="http://devtools.qiniu.com/qshell-v2.3.3.zip" target="_blank" rel="noopener">qshell</a> <a href="https://developer.qiniu.com/kodo/tools/1302/qshell" target="_blank" rel="noopener">官方文档</a></h2><p>将下载下来的压缩文件解压到任意目录，将其中的名字为 darwin 的文件重命名为 qshell 并放入 mac 的 /usr/local/bin <a href="https://www.jianshu.com/p/9a6dca7ccfa0" target="_blank" rel="noopener">目录</a>，最后在命令行输入 qshell 。</p><p><img src="https://hexo-pics.nos-eastchina1.126.net/qiniu/qshell1.png" alt=""></p><h2 id="密钥设置"><a href="#密钥设置" class="headerlink" title="密钥设置"></a>密钥设置</h2><p>这里需要使用七牛账号中<a href="https://portal.qiniu.com/user/key" target="_blank" rel="noopener">个人密钥管理</a>下的 AccessKey 和 SecretKey 。</p><p>找到这两个值后在命令行中输入如下命令。(其中 ak 和 sk 分别对应 AccessKey 和 SecretKey ， name 为账户名称)<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ qshell account ak sk <span class="built_in">name</span></span><br></pre></td></tr></table></figure></p><p>如果没有报错的话，输入以下命令来显示账号信息。<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>qshell account</span><br></pre></td></tr></table></figure></p><h2 id="迁移文件"><a href="#迁移文件" class="headerlink" title="迁移文件"></a>迁移文件</h2><p>使用如下命令进行文件迁移并生成包含文件名的文本文件。</p><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span> qshell listbucket &#123; bucket_name &#125; | awk -F<span class="string">"\t"</span> <span class="string">'&#123;print $1&#125;'</span> &gt; <span class="keyword">files</span>.txt</span><br><span class="line"><span class="symbol">$</span> qshell batchcopy &#123; bucket_name &#125; &#123; new_bucket_name &#125; -i <span class="keyword">files</span>.txt</span><br></pre></td></tr></table></figure><h1 id="批量下载文件到本地"><a href="#批量下载文件到本地" class="headerlink" title="批量下载文件到本地"></a>批量下载文件到本地</h1><p>上面只是将旧桶内的文件转移到新的桶内，原本无法预览、下载的文件现在都可以正常操作了，可是里面有很多图片总不能从网页上一张一张下载下来然后再上传到其他的储存空间里吧，因此这里就需要思考如何将图片批量下载到本地磁盘。七牛云的 qshell 工具有 <a href="https://github.com/qiniu/qshell/blob/master/docs/qdownload.md" target="_blank" rel="noopener"><code>qdownload</code></a> 方法能批量下载文件，但是尝试多次均以失败告终，后看到 qshell 的 <a href="https://github.com/qiniu/qshell/blob/master/docs/get.md" target="_blank" rel="noopener"><code>get</code></a> 方法只能每次操作一个文件，如果让电脑代替人工去重复操作这一 get 方法，就可以把每一张图片都下载下来。</p><p>python 脚本代码如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> linecache</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> num <span class="keyword">in</span> range(<span class="number">1</span>, total_num):</span><br><span class="line">    result = linecache.getline(<span class="string">'./files.txt'</span>, num).strip()</span><br><span class="line">    print(result)</span><br><span class="line">    os.system(<span class="string">'/usr/local/bin/qshell get test '</span> + result)</span><br></pre></td></tr></table></figure></p><h1 id="上传至网易-nos"><a href="#上传至网易-nos" class="headerlink" title="上传至网易 nos"></a>上传至网易 nos</h1><p><a href="https://c.163yun.com/dashboard#/m/nos/" target="_blank" rel="noopener">网易nos</a> 的注册与创建桶的过程不再过多介绍，需要注意的是在创建储存桶完毕之后要进行两个关键的配置。</p><ul><li><p>存储桶（bucket）访问权限</p></li><li><p>防盗链设置</p></li></ul><p>1、访问权限</p><p>访问权限应设置为公有读。如图中解释：</p><p><img src="https://hexo-pics.nos-eastchina1.126.net/qiniu/rwpro.png" alt=""></p><p>2、防盗链设置</p><p>为了保护自己的免费额度，防止图片被他人盗用，因此需要开启防盗链。</p><p><img src="https://hexo-pics.nos-eastchina1.126.net/qiniu/fdl.png" alt=""></p><hr>]]></content>
+    
+    <summary type="html">
+    
+      今天想去七牛云上传个图片，上传几次都没成功，之前的图片也查看不了，发现页面提示：5402 获取bucket域名失败，才发现七牛云的测试域名被回收了，想继续用需要绑定一个已备案的域名，太麻烦了。主要是之前的图片现在无法预览，也无法下载。不过经实践发现可以进行数据迁移，写此篇做记录。
+    
+    </summary>
+    
+      <category term="日常" scheme="http://yoursite.com/categories/%E6%97%A5%E5%B8%B8/"/>
+    
     
   </entry>
   
