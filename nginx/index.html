@@ -108,7 +108,8 @@
 <meta property="og:image" content="https://hexo-pics.nos-eastchina1.126.net/nginx/ssl_apply.png">
 <meta property="og:image" content="https://hexo-pics.nos-eastchina1.126.net/nginx/ssl_detail.png">
 <meta property="og:image" content="https://hexo-pics.nos-eastchina1.126.net/nginx/ssl_down.png">
-<meta property="og:updated_time" content="2019-01-15T02:08:23.716Z">
+<meta property="og:image" content="https://hexo-pics.nos-eastchina1.126.net/400.png">
+<meta property="og:updated_time" content="2019-01-15T02:18:27.760Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="域名ssl证书部署到服务器">
 <meta name="twitter:description" content="用 Chrome 打开网站总是提示我不安全，看着烦心，干脆把域名挂上 https 之后就不提示了。参考了腾讯云的官方文档，以及后续遇到的小问题，写此篇做记录。">
@@ -423,7 +424,7 @@
                 
               
 
-              <time title="创建时间：2019-01-15 09:11:41 / 修改时间：10:08:23" itemprop="dateCreated datePublished" datetime="2019-01-15T09:11:41+08:00">2019-01-15</time>
+              <time title="创建时间：2019-01-15 09:11:41 / 修改时间：10:18:27" itemprop="dateCreated datePublished" datetime="2019-01-15T09:11:41+08:00">2019-01-15</time>
             
 
             
@@ -514,6 +515,14 @@
 <p>将这两个文件上传到服务器中，将域名 <a href="http://www.domain.com" target="_blank" rel="noopener">www.domain.com</a> 的证书文件 1_<a href="http://www.domain.com_bundle.crt" target="_blank" rel="noopener">www.domain.com_bundle.crt</a> 、私钥文件 2_<a href="http://www.domain.com.key" target="_blank" rel="noopener">www.domain.com.key</a> 保存到同一个目录，例如 /usr/local/nginx 目录下。</p>
 <p>修改 Nginx 根目录下 conf/nginx.conf 文件，内容如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen <span class="number">443</span>;</span><br><span class="line">        server_name www.domain.com; <span class="comment">#填写绑定证书的域名</span></span><br><span class="line">        ssl on;</span><br><span class="line">        ssl_certificate <span class="number">1</span>_www.domain.com_bundle.crt;</span><br><span class="line">        ssl_certificate_key <span class="number">2</span>_www.domain.com.key;</span><br><span class="line">        ssl_session_timeout <span class="number">5</span>m;</span><br><span class="line">        ssl_protocols TLSv1 TLSv1<span class="number">.1</span> TLSv1<span class="number">.2</span>; <span class="comment">#按照这个协议配置</span></span><br><span class="line">        ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;<span class="comment">#按照这个套件配置</span></span><br><span class="line">        ssl_prefer_server_ciphers on;</span><br><span class="line">        location / &#123;</span><br><span class="line">            root   html; <span class="comment">#站点目录</span></span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
 <p>配置完成后，请先执行命令 nginx –t 测试 Nginx 配置是否有误。若无报错，重启 Nginx 之后，即可使用 <a href="https://www.domain.com" target="_blank" rel="noopener">https://www.domain.com</a> 来访问。</p>
+<p>如果这里你的 https 域名已经可以正常访问了，那就不用往下看了。</p>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>我重启了 Nginx 服务器后，重新使用 https 访问我的网址，可以正常访问，但是直接输入我的网址域名，不加 http 或者 https，网页提示“400 Bad Request: The plain HTTP request was sent to HTTPS port”，如图。</p>
+<p><img src="https://hexo-pics.nos-eastchina1.126.net/400.png" alt=""></p>
+<blockquote>
+<p>文章引自 <a href="https://blog.csdn.net/system1024/article/details/52636147" target="_blank" rel="noopener">https://blog.csdn.net/system1024/article/details/52636147</a></p>
+</blockquote>
+<p>解决方法是修改服务器的 /usr/local/nginx/nginx.conf 文件如下。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen       <span class="number">80</span> default_server;</span><br><span class="line">        listen       <span class="number">443</span> ssl; <span class="comment"># 443 后面加上 ssl</span></span><br><span class="line">        <span class="comment">#ssl          on;       # 删除此行</span></span><br><span class="line">        server_name  tangx1.com;</span><br><span class="line">        root         /usr/share/nginx/html;</span><br><span class="line">        ssl_certificate <span class="number">1</span>_tangx1.com_bundle.crt;</span><br><span class="line">        ssl_certificate_key <span class="number">2</span>_tangx1.com.key;</span><br><span class="line">        ssl_session_timeout <span class="number">5</span>m;</span><br><span class="line">        ssl_protocols TLSv1 TLSv1<span class="number">.1</span> TLSv1<span class="number">.2</span>;</span><br><span class="line">        ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;</span><br><span class="line">        ssl_prefer_server_ciphers on;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
 
       
     </div>
@@ -749,7 +758,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#申请-SSL-证书"><span class="nav-number">1.</span> <span class="nav-text">申请 SSL 证书</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#下载-SSL-证书"><span class="nav-number">2.</span> <span class="nav-text">下载 SSL 证书</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Nginx-证书部署"><span class="nav-number">3.</span> <span class="nav-text">Nginx 证书部署</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#申请-SSL-证书"><span class="nav-number">1.</span> <span class="nav-text">申请 SSL 证书</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#下载-SSL-证书"><span class="nav-number">2.</span> <span class="nav-text">下载 SSL 证书</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Nginx-证书部署"><span class="nav-number">3.</span> <span class="nav-text">Nginx 证书部署</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题"><span class="nav-number">4.</span> <span class="nav-text">问题</span></a></li></ol></div>
             
 
           </div>
