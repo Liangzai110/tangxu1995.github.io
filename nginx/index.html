@@ -109,7 +109,7 @@
 <meta property="og:image" content="https://hexo-pics.nos-eastchina1.126.net/nginx/ssl_detail.png">
 <meta property="og:image" content="https://hexo-pics.nos-eastchina1.126.net/nginx/ssl_down.png">
 <meta property="og:image" content="https://hexo-pics.nos-eastchina1.126.net/400.png">
-<meta property="og:updated_time" content="2019-01-15T02:34:00.948Z">
+<meta property="og:updated_time" content="2019-01-15T02:36:11.179Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="域名ssl证书部署到服务器">
 <meta name="twitter:description" content="用 Chrome 打开网站总是提示不安全，看着烦心，干脆把域名挂上 https 之后就不提示了。参考了腾讯云的官方文档，以及后续遇到的小问题，写此篇做记录。">
@@ -424,7 +424,7 @@
                 
               
 
-              <time title="创建时间：2019-01-15 09:11:41 / 修改时间：10:34:00" itemprop="dateCreated datePublished" datetime="2019-01-15T09:11:41+08:00">2019-01-15</time>
+              <time title="创建时间：2019-01-15 09:11:41 / 修改时间：10:36:11" itemprop="dateCreated datePublished" datetime="2019-01-15T09:11:41+08:00">2019-01-15</time>
             
 
             
@@ -511,7 +511,7 @@
 <p><img src="https://hexo-pics.nos-eastchina1.126.net/nginx/ssl_detail.png" alt=""></p>
 <p>下载解压后，文件中有几个子文件夹，分别是 Apache、IIS、Nginx 服务器的证书文件。<a href="https://cloud.tencent.com/document/product/400/4143" target="_blank" rel="noopener">证书安装指引</a></p>
 <p><img src="https://hexo-pics.nos-eastchina1.126.net/nginx/ssl_down.png" alt=""></p>
-<h1 id="Nginx-证书部署"><a href="#Nginx-证书部署" class="headerlink" title="Nginx 证书部署"></a>Nginx 证书部署</h1><p>Nginx 文件夹内获得 SSL 证书文件 1_<a href="http://www.domain.com_bundle.crt" target="_blank" rel="noopener">www.domain.com_bundle.crt</a> 和私钥文件2_<a href="http://www.domain.com.key。1_www.domain.com_bundle.crt" target="_blank" rel="noopener">www.domain.com.key。1_www.domain.com_bundle.crt</a> 文件包括两段证书代码 “—–BEGIN CERTIFICATE—–” 和 “—–END CERTIFICATE—–”,2_<a href="http://www.domain.com.key" target="_blank" rel="noopener">www.domain.com.key</a> 文件包括一段私钥代码 “—–BEGIN RSA PRIVATE KEY—–” 和 “—–END RSA PRIVATE KEY—–”。</p>
+<h1 id="Nginx-证书部署"><a href="#Nginx-证书部署" class="headerlink" title="Nginx 证书部署"></a>Nginx 证书部署</h1><p>Nginx 文件夹内获得 SSL 证书文件 1_<a href="http://www.domain.com_bundle.crt" target="_blank" rel="noopener">www.domain.com_bundle.crt</a> 和私钥文件2_<a href="http://www.domain.com.key。" target="_blank" rel="noopener">www.domain.com.key。</a> 1_<a href="http://www.domain.com_bundle.crt" target="_blank" rel="noopener">www.domain.com_bundle.crt</a> 文件包括两段证书代码 “—–BEGIN CERTIFICATE—–” 和 “—–END CERTIFICATE—–”,2_<a href="http://www.domain.com.key" target="_blank" rel="noopener">www.domain.com.key</a> 文件包括一段私钥代码 “—–BEGIN RSA PRIVATE KEY—–” 和 “—–END RSA PRIVATE KEY—–”。</p>
 <p>将这两个文件上传到服务器中，将域名 <a href="http://www.domain.com" target="_blank" rel="noopener">www.domain.com</a> 的证书文件 1_<a href="http://www.domain.com_bundle.crt" target="_blank" rel="noopener">www.domain.com_bundle.crt</a> 、私钥文件 2_<a href="http://www.domain.com.key" target="_blank" rel="noopener">www.domain.com.key</a> 保存到同一个目录，例如 /usr/local/nginx 目录下。</p>
 <p>修改 Nginx 根目录下 conf/nginx.conf 文件，内容如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen <span class="number">443</span>;</span><br><span class="line">        server_name www.domain.com; <span class="comment">#填写绑定证书的域名</span></span><br><span class="line">        ssl on;</span><br><span class="line">        ssl_certificate <span class="number">1</span>_www.domain.com_bundle.crt;</span><br><span class="line">        ssl_certificate_key <span class="number">2</span>_www.domain.com.key;</span><br><span class="line">        ssl_session_timeout <span class="number">5</span>m;</span><br><span class="line">        ssl_protocols TLSv1 TLSv1<span class="number">.1</span> TLSv1<span class="number">.2</span>; <span class="comment">#按照这个协议配置</span></span><br><span class="line">        ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;<span class="comment">#按照这个套件配置</span></span><br><span class="line">        ssl_prefer_server_ciphers on;</span><br><span class="line">        location / &#123;</span><br><span class="line">            root   html; <span class="comment">#站点目录</span></span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
 <p>配置完成后，请先执行命令 nginx –t 测试 Nginx 配置是否有误。若无报错，重启 Nginx 之后，即可使用 <a href="https://www.domain.com" target="_blank" rel="noopener">https://www.domain.com</a> 来访问。</p>
