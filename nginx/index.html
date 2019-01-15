@@ -96,21 +96,24 @@
 
 
 
-  <meta name="description" content="在看一些框架源代码的过程中碰到很多元类的实例，看起来很吃力很晦涩；在看python cookbook中关于元类创建单例模式的那一节有些疑惑。因此花了几天时间研究下元类这个概念。通过学习元类，我对python的面向对象有了更加深入的了解。这里将一篇写的非常好的文章基本照搬过来吧，这是一篇在Stack overflow上很热的帖子，我看 http://blog.jobbole.com/21351/ 这">
-<meta name="keywords" content="Python">
+  <meta name="description" content="用 Chrome 打开网站总是提示我不安全，看着烦心，干脆把域名挂上 https 之后就不提示了。参考了腾讯云的官方文档，以及后续遇到的小问题，写此篇做记录。">
+<meta name="keywords" content="服务器,Nginx">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python中的元类(metaclass)">
-<meta property="og:url" content="http://yoursite.com/metaclass/index.html">
+<meta property="og:title" content="域名ssl证书部署到服务器">
+<meta property="og:url" content="http://yoursite.com/nginx/index.html">
 <meta property="og:site_name" content="2048">
-<meta property="og:description" content="在看一些框架源代码的过程中碰到很多元类的实例，看起来很吃力很晦涩；在看python cookbook中关于元类创建单例模式的那一节有些疑惑。因此花了几天时间研究下元类这个概念。通过学习元类，我对python的面向对象有了更加深入的了解。这里将一篇写的非常好的文章基本照搬过来吧，这是一篇在Stack overflow上很热的帖子，我看 http://blog.jobbole.com/21351/ 这">
+<meta property="og:description" content="用 Chrome 打开网站总是提示我不安全，看着烦心，干脆把域名挂上 https 之后就不提示了。参考了腾讯云的官方文档，以及后续遇到的小问题，写此篇做记录。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-11T12:05:01.763Z">
+<meta property="og:image" content="https://hexo-pics.nos-eastchina1.126.net/nginx/ssl.gif">
+<meta property="og:image" content="https://hexo-pics.nos-eastchina1.126.net/nginx/ssl_apply.png">
+<meta property="og:image" content="https://hexo-pics.nos-eastchina1.126.net/nginx/ssl_detail.png">
+<meta property="og:image" content="https://hexo-pics.nos-eastchina1.126.net/nginx/ssl_down.png">
+<meta property="og:updated_time" content="2019-01-15T02:08:23.716Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python中的元类(metaclass)">
-<meta name="twitter:description" content="在看一些框架源代码的过程中碰到很多元类的实例，看起来很吃力很晦涩；在看python cookbook中关于元类创建单例模式的那一节有些疑惑。因此花了几天时间研究下元类这个概念。通过学习元类，我对python的面向对象有了更加深入的了解。这里将一篇写的非常好的文章基本照搬过来吧，这是一篇在Stack overflow上很热的帖子，我看 http://blog.jobbole.com/21351/ 这">
+<meta name="twitter:title" content="域名ssl证书部署到服务器">
+<meta name="twitter:description" content="用 Chrome 打开网站总是提示我不安全，看着烦心，干脆把域名挂上 https 之后就不提示了。参考了腾讯云的官方文档，以及后续遇到的小问题，写此篇做记录。">
+<meta name="twitter:image" content="https://hexo-pics.nos-eastchina1.126.net/nginx/ssl.gif">
 
-
-  
 
 
   <link rel="alternate" href="/atom.xml" title="2048" type="application/atom+xml">
@@ -118,7 +121,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/metaclass/">
+  <link rel="canonical" href="http://yoursite.com/nginx/">
 
 
 
@@ -128,7 +131,7 @@
   };
 </script>
 
-  <title>Python中的元类(metaclass) | 2048</title>
+  <title>域名ssl证书部署到服务器 | 2048</title>
   
 
 
@@ -377,7 +380,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/metaclass/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/nginx/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tang">
@@ -394,7 +397,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Python中的元类(metaclass)
+          <h1 class="post-title" itemprop="name headline">域名ssl证书部署到服务器
 
               
             
@@ -420,7 +423,7 @@
                 
               
 
-              <time title="创建时间：2019-01-11 19:34:58 / 修改时间：20:05:01" itemprop="dateCreated datePublished" datetime="2019-01-11T19:34:58+08:00">2019-01-11</time>
+              <time title="创建时间：2019-01-15 09:11:41 / 修改时间：10:08:23" itemprop="dateCreated datePublished" datetime="2019-01-15T09:11:41+08:00">2019-01-15</time>
             
 
             
@@ -431,6 +434,24 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Nginx/" itemprop="url" rel="index"><span itemprop="name">Nginx</span></a></span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -439,8 +460,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/metaclass/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/metaclass/" itemprop="commentCount"></span>
+                <a href="/nginx/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/nginx/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -448,7 +469,7 @@
 
           
           
-            <span id="/metaclass/" class="leancloud_visitors" data-flag-title="Python中的元类(metaclass)">
+            <span id="/nginx/" class="leancloud_visitors" data-flag-title="域名ssl证书部署到服务器">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -465,6 +486,8 @@
           
 
           
+            <div class="post-description">用 Chrome 打开网站总是提示我不安全，看着烦心，干脆把域名挂上 https 之后就不提示了。参考了腾讯云的官方文档，以及后续遇到的小问题，写此篇做记录。</div>
+          
 
         </div>
       </header>
@@ -479,14 +502,18 @@
       
 
       
-        <p>在看一些框架源代码的过程中碰到很多元类的实例，看起来很吃力很晦涩；在看python cookbook中关于元类创建单例模式的那一节有些疑惑。因此花了几天时间研究下元类这个概念。通过学习元类，我对python的面向对象有了更加深入的了解。这里将一篇写的非常好的文章基本照搬过来吧，这是一篇在Stack overflow上很热的帖子，我看 <a href="http://blog.jobbole.com/21351/" target="_blank" rel="noopener">http://blog.jobbole.com/21351/</a> 这篇博客对其进行了翻译。<br><a id="more"></a></p>
-<h1 id="理解类也是对象"><a href="#理解类也是对象" class="headerlink" title="理解类也是对象"></a>理解类也是对象</h1><p>在理解元类之前，需要先掌握 Python 中的类。Python 中类的概念借鉴于 Smalltalk，这显得有些奇特。在大多数编程语言中，类就是一组用来描述如何生成一个对象的代码段。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ObjectCreator</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">my_object = ObjectCreator()</span><br><span class="line">print(my_object)</span><br><span class="line"><span class="comment"># 输出：&lt;__main__.ObjectCreator object at 0x106cbc588&gt;</span></span><br></pre></td></tr></table></figure>
-<p>但是，Python 中的类还远不止如此。类同样也是一种对象。只要使用关键词 class，Python 解释器在执行的时候就会创建一个对象。下面的代码端：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ObjectCreator</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure></p>
-<p>将在内存中创建一个对象，名字就是 ObjectCreator。这个对象（类）自身拥有创建对象（类实例）的能力，而这就是为什么它是一个类的原因。但是，它的本质仍然是一个对象，于是你可以对它做如下的操作：<br>你可以将它赋值给一个变量，你可以拷贝它，你可以为它增加属性，你可以将它作为函数参数进行传递。<br>下面是示例：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> ObjectCreator     </span><br><span class="line"><span class="comment"># 你可以打印一个类，因为它其实也是一个对象</span></span><br><span class="line"><span class="comment">#输出：&lt;class '__main__.ObjectCreator'&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">echo</span><span class="params">(o)</span>:</span></span><br><span class="line">    <span class="keyword">print</span> o</span><br><span class="line"></span><br><span class="line">echo(ObjectCreator) <span class="comment"># 你可以将类做为参数传给函数</span></span><br><span class="line"><span class="comment">#输出：&lt;class '__main__.ObjectCreator'&gt;</span></span><br><span class="line"><span class="keyword">print</span> hasattr(ObjectCreator, <span class="string">'new_attribute'</span>)</span><br><span class="line"><span class="comment">#输出：False</span></span><br><span class="line"></span><br><span class="line">ObjectCreator.new_attribute = <span class="string">'foo'</span> <span class="comment">#  你可以为类增加属性</span></span><br><span class="line"><span class="keyword">print</span> hasattr(ObjectCreator, <span class="string">'new_attribute'</span>)</span><br><span class="line"><span class="comment">#输出：True</span></span><br><span class="line"><span class="keyword">print</span> ObjectCreator.new_attribute</span><br><span class="line"><span class="comment">#输出：foo</span></span><br><span class="line"></span><br><span class="line">ObjectCreatorMirror = ObjectCreator <span class="comment"># 你可以将类赋值给一个变量</span></span><br><span class="line"><span class="keyword">print</span> ObjectCreatorMirror()</span><br><span class="line"><span class="comment">#输出：&lt;__main__.ObjectCreator object at 0x108551310&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h1 id="动态地创建类"><a href="#动态地创建类" class="headerlink" title="动态地创建类"></a>动态地创建类</h1><h2 id="通过-return-class-动态的构建需要的类"><a href="#通过-return-class-动态的构建需要的类" class="headerlink" title="通过 return class 动态的构建需要的类"></a>通过 return class 动态的构建需要的类</h2><p>因为类也是对象，你可以在运行时动态的创建它们，就像其他任何对象一样。首先，你可以在函数中创建类，使用 class 关键字即可。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">choose_class</span><span class="params">(name)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> name == <span class="string">'foo'</span>:</span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">Foo</span><span class="params">(object)</span>:</span></span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">        <span class="keyword">return</span> Foo <span class="comment"># 返回的是类，不是类的实例</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">Bar</span><span class="params">(object)</span>:</span></span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">        <span class="keyword">return</span> Bar</span><br><span class="line">MyClass = choose_class(<span class="string">'foo'</span>)</span><br><span class="line"></span><br><span class="line">print(MyClass)  <span class="comment"># 函数返回的是类，不是类的实例</span></span><br><span class="line"><span class="comment">#输出：&lt;class '__main__.Foo'&gt;</span></span><br><span class="line"></span><br><span class="line">print(MyClass()) <span class="comment"># 你可以通过这个类创建类实例，也就是对象</span></span><br><span class="line"><span class="comment">#输出：&lt;__main__.Foo object at 0x1085ed950</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="通过-type-函数构造类"><a href="#通过-type-函数构造类" class="headerlink" title="通过 type 函数构造类"></a>通过 type 函数构造类</h2><p>但这还不够动态，因为你仍然需要自己编写整个类的代码。由于类也是对象，所以它们必须是通过什么东西来生成的才对。当你使用 class 关键字时，Python 解释器自动创建这个对象。但就和 Python 中的大多数事情一样，Python 仍然提供给你手动处理的方法。还记得内建函数 type 吗？这个古老但强大的函数能够让你知道一个对象的类型是什么，就像这样：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> type(<span class="number">1</span>)</span><br><span class="line"><span class="comment">#输出：&lt;type 'int'&gt;</span></span><br><span class="line"><span class="keyword">print</span> type(<span class="string">"1"</span>)</span><br><span class="line"><span class="comment">#输出：&lt;type 'str'&gt;</span></span><br><span class="line"><span class="keyword">print</span> type(ObjectCreator)</span><br><span class="line"><span class="comment">#输出：&lt;type 'type'&gt;</span></span><br><span class="line"><span class="keyword">print</span> type(ObjectCreator())</span><br><span class="line"><span class="comment">#输出：&lt;class '__main__.ObjectCreator'&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>这里，type 有一种完全不同的能力，它也能动态的创建类。type 可以接受一个类的描述作为参数，然后返回一个类。（我知道，根据传入参数的不同，同一个函数拥有两种完全不同的用法是一件很傻的事情，但这在 Python 中是为了保持向后兼容性）</p>
+        <h1 id="申请-SSL-证书"><a href="#申请-SSL-证书" class="headerlink" title="申请 SSL 证书"></a>申请 SSL 证书</h1><p>首先进入腾讯云 <a href="https://console.qcloud.com/ssl" target="_blank" rel="noopener">SSL域名管理</a>，点击按钮<code>申请证书</code>，选择第一个免费证书，我这里已经申请过了，简单演示一下，输入绑定域名，邮箱然后选填的都可以不填，直接下一步，如果域名已经绑定了服务器就选择自动，否则选择手动，最后一个不用管。</p>
+<p><img src="https://hexo-pics.nos-eastchina1.126.net/nginx/ssl.gif" alt=""></p>
+<p>提交之后耐心等待，审核通过腾讯云官方会发送邮件提醒。</p>
+<p><img src="https://hexo-pics.nos-eastchina1.126.net/nginx/ssl_apply.png" alt=""></p>
+<h1 id="下载-SSL-证书"><a href="#下载-SSL-证书" class="headerlink" title="下载 SSL 证书"></a>下载 SSL 证书</h1><p>申请成功后，点击右边的下载按钮下载证书文件。</p>
+<p><img src="https://hexo-pics.nos-eastchina1.126.net/nginx/ssl_detail.png" alt=""></p>
+<p>下载解压后，文件中有几个子文件夹，分别是 Apache、IIS、Nginx 服务器的证书文件。<a href="https://cloud.tencent.com/document/product/400/4143" target="_blank" rel="noopener">证书安装指引</a></p>
+<p><img src="https://hexo-pics.nos-eastchina1.126.net/nginx/ssl_down.png" alt=""></p>
+<h1 id="Nginx-证书部署"><a href="#Nginx-证书部署" class="headerlink" title="Nginx 证书部署"></a>Nginx 证书部署</h1><p>Nginx 文件夹内获得 SSL 证书文件 1_<a href="http://www.domain.com_bundle.crt" target="_blank" rel="noopener">www.domain.com_bundle.crt</a> 和私钥文件2_<a href="http://www.domain.com.key。1_www.domain.com_bundle.crt" target="_blank" rel="noopener">www.domain.com.key。1_www.domain.com_bundle.crt</a> 文件包括两段证书代码 “—–BEGIN CERTIFICATE—–” 和 “—–END CERTIFICATE—–”,2_<a href="http://www.domain.com.key" target="_blank" rel="noopener">www.domain.com.key</a> 文件包括一段私钥代码 “—–BEGIN RSA PRIVATE KEY—–” 和 “—–END RSA PRIVATE KEY—–”。</p>
+<p>将这两个文件上传到服务器中，将域名 <a href="http://www.domain.com" target="_blank" rel="noopener">www.domain.com</a> 的证书文件 1_<a href="http://www.domain.com_bundle.crt" target="_blank" rel="noopener">www.domain.com_bundle.crt</a> 、私钥文件 2_<a href="http://www.domain.com.key" target="_blank" rel="noopener">www.domain.com.key</a> 保存到同一个目录，例如 /usr/local/nginx 目录下。</p>
+<p>修改 Nginx 根目录下 conf/nginx.conf 文件，内容如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen <span class="number">443</span>;</span><br><span class="line">        server_name www.domain.com; <span class="comment">#填写绑定证书的域名</span></span><br><span class="line">        ssl on;</span><br><span class="line">        ssl_certificate <span class="number">1</span>_www.domain.com_bundle.crt;</span><br><span class="line">        ssl_certificate_key <span class="number">2</span>_www.domain.com.key;</span><br><span class="line">        ssl_session_timeout <span class="number">5</span>m;</span><br><span class="line">        ssl_protocols TLSv1 TLSv1<span class="number">.1</span> TLSv1<span class="number">.2</span>; <span class="comment">#按照这个协议配置</span></span><br><span class="line">        ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;<span class="comment">#按照这个套件配置</span></span><br><span class="line">        ssl_prefer_server_ciphers on;</span><br><span class="line">        location / &#123;</span><br><span class="line">            root   html; <span class="comment">#站点目录</span></span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>配置完成后，请先执行命令 nginx –t 测试 Nginx 配置是否有误。若无报错，重启 Nginx 之后，即可使用 <a href="https://www.domain.com" target="_blank" rel="noopener">https://www.domain.com</a> 来访问。</p>
 
       
     </div>
@@ -510,7 +537,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Python/" rel="tag"># Python</a>
+            <a href="/tags/服务器/" rel="tag"># 服务器</a>
+          
+            <a href="/tags/Nginx/" rel="tag"># Nginx</a>
           
         </div>
       
@@ -523,8 +552,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/bilibili-videoInfo/" rel="next" title="bilibili之视频信息爬虫">
-                <i class="fa fa-chevron-left"></i> bilibili之视频信息爬虫
+              <a href="/socket/" rel="next" title="Python中的网络编程">
+                <i class="fa fa-chevron-left"></i> Python中的网络编程
               </a>
             
           </div>
@@ -532,10 +561,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/socket/" rel="prev" title="Python中的网络编程">
-                Python中的网络编程 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -724,7 +749,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#理解类也是对象"><span class="nav-number">1.</span> <span class="nav-text">理解类也是对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态地创建类"><span class="nav-number">2.</span> <span class="nav-text">动态地创建类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#通过-return-class-动态的构建需要的类"><span class="nav-number">2.1.</span> <span class="nav-text">通过 return class 动态的构建需要的类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过-type-函数构造类"><span class="nav-number">2.2.</span> <span class="nav-text">通过 type 函数构造类</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#申请-SSL-证书"><span class="nav-number">1.</span> <span class="nav-text">申请 SSL 证书</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#下载-SSL-证书"><span class="nav-number">2.</span> <span class="nav-text">下载 SSL 证书</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Nginx-证书部署"><span class="nav-number">3.</span> <span class="nav-text">Nginx 证书部署</span></a></li></ol></div>
             
 
           </div>
