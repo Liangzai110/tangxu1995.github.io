@@ -448,18 +448,6 @@
 
           
           
-            <span id="/nginx/" class="leancloud_visitors" data-flag-title="域名ssl证书部署到服务器">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">热度：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-                <span>℃</span>
-            </span>
-          
 
           
 
@@ -626,18 +614,6 @@
           
 
           
-          
-            <span id="/socket/" class="leancloud_visitors" data-flag-title="Python中的网络编程">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">热度：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-                <span>℃</span>
-            </span>
           
 
           
@@ -806,18 +782,6 @@
 
           
           
-            <span id="/bilibili_danmu/" class="leancloud_visitors" data-flag-title="bilibili之弹幕爬虫">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">热度：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-                <span>℃</span>
-            </span>
-          
 
           
 
@@ -967,18 +931,6 @@
 
           
           
-            <span id="/scrapy-login-captcha/" class="leancloud_visitors" data-flag-title="Scrapy模拟登录豆瓣网进阶篇">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">热度：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-                <span>℃</span>
-            </span>
-          
 
           
 
@@ -1127,18 +1079,6 @@
           
 
           
-          
-            <span id="/scrapy_login/" class="leancloud_visitors" data-flag-title="Scrapy模拟登录豆瓣网初级篇">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">热度：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-                <span>℃</span>
-            </span>
           
 
           
@@ -1314,18 +1254,6 @@
 
           
           
-            <span id="/Pycharm/" class="leancloud_visitors" data-flag-title="Pycharm">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">热度：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-                <span>℃</span>
-            </span>
-          
 
           
 
@@ -1493,18 +1421,6 @@
 
           
           
-            <span id="/qiniu/" class="leancloud_visitors" data-flag-title="七牛云数据迁移至网易nos">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">热度：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-                <span>℃</span>
-            </span>
-          
 
           
 
@@ -1653,18 +1569,6 @@
           
 
           
-          
-            <span id="/laravel_admin/" class="leancloud_visitors" data-flag-title="PHP框架--Laravel">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">热度：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-                <span>℃</span>
-            </span>
           
 
           
@@ -1815,18 +1719,6 @@
 
           
           
-            <span id="/quick_sort/" class="leancloud_visitors" data-flag-title="Python算法--快速排序">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">热度：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-                <span>℃</span>
-            </span>
-          
 
           
 
@@ -1975,18 +1867,6 @@
           
 
           
-          
-            <span id="/insert_sort/" class="leancloud_visitors" data-flag-title="Python算法--插入排序">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">热度：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-                <span>℃</span>
-            </span>
           
 
           
@@ -2734,74 +2614,6 @@
 
 
   
-  
-  <script>
-    
-    function showTime(Counter) {
-      var entries = [];
-      var $visitors = $('.leancloud_visitors');
-
-      $visitors.each(function() {
-        entries.push( $(this).attr('id').trim() );
-      });
-
-      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { '$in': entries } }) })
-        .done(function({ results }) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.url;
-            var time = item.time;
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for (var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if (countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function ({ responseJSON }) {
-          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
-        });
-    }
-    
-
-    $(function() {
-      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'sBhhR3m8LH5bmljCqNCY2tWg-gzGzoHsz')
-        .done(function({ api_server }) {
-          var Counter = function(method, url, data) {
-            return $.ajax({
-              method: method,
-              url: 'https://' + api_server + '/1.1' + url,
-              headers: {
-                'X-LC-Id': 'sBhhR3m8LH5bmljCqNCY2tWg-gzGzoHsz',
-                'X-LC-Key': 'sKCNPTN3V5KAjjkl5P5J6U5f',
-                'Content-Type': 'application/json',
-              },
-              data: data
-            });
-          };
-          
-            if ($('.post-title-link').length >= 1) {
-              showTime(Counter);
-            }
-          
-        });
-    });
-  </script>
-
-
 
   
 
