@@ -109,7 +109,7 @@
 <meta property="og:image" content="https://hexo-pics.nos-eastchina1.126.net/nginx/ssl_detail.png">
 <meta property="og:image" content="https://hexo-pics.nos-eastchina1.126.net/nginx/ssl_down.png">
 <meta property="og:image" content="https://hexo-pics.nos-eastchina1.126.net/400.png">
-<meta property="og:updated_time" content="2019-01-15T02:44:05.303Z">
+<meta property="og:updated_time" content="2019-01-16T15:20:21.331Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="域名ssl证书部署到服务器">
 <meta name="twitter:description" content="用 Chrome 打开网站总是提示不安全，看着烦心，干脆把域名挂上 https 之后就不提示了。此篇记录了腾讯云的证书部署过程，部署部分参考了腾讯云的官方文档，文章末尾记录了遇到的小问题。">
@@ -516,7 +516,7 @@
 <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>我重启了 Nginx 服务器后，重新使用 https 访问我的网址，可以正常访问，但是直接输入我的网址域名，不加 http 或者 https，网页提示“400 Bad Request: The plain HTTP request was sent to HTTPS port”，如图。</p>
 <p><img src="https://hexo-pics.nos-eastchina1.126.net/400.png" alt=""></p>
 <blockquote>
-<p>文章引自 <a href="https://blog.csdn.net/system1024/article/details/52636147" target="_blank" rel="noopener">https://blog.csdn.net/system1024/article/details/52636147</a></p>
+<p>引自 <a href="https://blog.csdn.net/system1024/article/details/52636147" target="_blank" rel="noopener">https://blog.csdn.net/system1024/article/details/52636147</a></p>
 </blockquote>
 <p>解决方法是修改服务器的 /usr/local/nginx/nginx.conf 文件如下。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen       <span class="number">80</span> default_server;</span><br><span class="line">        listen       <span class="number">443</span> ssl; <span class="comment"># 443 后面加上 ssl</span></span><br><span class="line">        <span class="comment">#ssl          on;       # 删除此行</span></span><br><span class="line">        server_name  tangx1.com;</span><br><span class="line">        root         /usr/share/nginx/html;</span><br><span class="line">        ssl_certificate <span class="number">1</span>_tangx1.com_bundle.crt;</span><br><span class="line">        ssl_certificate_key <span class="number">2</span>_tangx1.com.key;</span><br><span class="line">        ssl_session_timeout <span class="number">5</span>m;</span><br><span class="line">        ssl_protocols TLSv1 TLSv1<span class="number">.1</span> TLSv1<span class="number">.2</span>;</span><br><span class="line">        ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;</span><br><span class="line">        ssl_prefer_server_ciphers on;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure></p>
 <hr>
