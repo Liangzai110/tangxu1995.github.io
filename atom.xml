@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-01-16T19:48:59.917Z</updated>
+  <updated>2019-01-18T09:00:36.063Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,20 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用with结构打开多个文件</title>
+    <link href="http://yoursite.com/python-with/"/>
+    <id>http://yoursite.com/python-with/</id>
+    <published>2019-01-18T07:27:09.000Z</published>
+    <updated>2019-01-18T09:00:36.063Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>mysql</title>
@@ -153,30 +167,6 @@
       <category term="Scrapy" scheme="http://yoursite.com/tags/Scrapy/"/>
     
       <category term="验证码" scheme="http://yoursite.com/tags/%E9%AA%8C%E8%AF%81%E7%A0%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Pycharm</title>
-    <link href="http://yoursite.com/Pycharm/"/>
-    <id>http://yoursite.com/Pycharm/</id>
-    <published>2018-11-26T07:23:13.000Z</published>
-    <updated>2019-01-03T07:52:24.707Z</updated>
-    
-    <content type="html"><![CDATA[<hr><p><img src="https://hexo-pics.nos-eastchina1.126.net/pycharm/pycharmlogo.png" alt=""></p><hr><a id="more"></a><h1 id="内存报错-The-IDE-is-running-low-on-memory"><a href="#内存报错-The-IDE-is-running-low-on-memory" class="headerlink" title="内存报错 The IDE is running low on memory"></a>内存报错 The IDE is running low on memory</h1><p>有时候在 mac 和 windows 系统上使用 PyCharm 时，会提醒 The IDE is running low on memory ，然后看了下内存占用，明明内存够，百度后发现是软件本身设置的内存较小。在 mac 系统中，PyCharm 操作如下：</p><p>1.打开 Help -&gt; Find Action</p><p><img src="https://hexo-pics.nos-eastchina1.126.net/pycharm/pyfind.png" alt=""></p><p>2.在搜索框中输入 VM Options , 点击进入第一条结果</p><p><img src="https://hexo-pics.nos-eastchina1.126.net/pycharm/vm_options.jpg" alt=""></p><p>3.将这里的 -Xmx750m 中的 750 改成想设置的内存大小</p><p><img src="https://hexo-pics.nos-eastchina1.126.net/pycharm/vm.jpg" alt=""></p>]]></content>
-    
-    <summary type="html">
-    
-      212
-    
-    </summary>
-    
-      <category term="Pycharm" scheme="http://yoursite.com/categories/Pycharm/"/>
-    
-      <category term="日常" scheme="http://yoursite.com/categories/Pycharm/%E6%97%A5%E5%B8%B8/"/>
-    
-    
-      <category term="Pycharm" scheme="http://yoursite.com/tags/Pycharm/"/>
     
   </entry>
   
