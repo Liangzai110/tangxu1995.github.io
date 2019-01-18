@@ -5,9 +5,9 @@
   <subtitle>Life is short I use Python</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
-  <updated>2019-01-18T09:00:36.063Z</updated>
-  <id>http://yoursite.com/</id>
+  <link href="https://tangx1.com/"/>
+  <updated>2019-01-18T12:34:07.290Z</updated>
+  <id>https://tangx1.com/</id>
   
   <author>
     <name>Tang</name>
@@ -17,13 +17,39 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>使用with结构打开多个文件</title>
-    <link href="http://yoursite.com/python-with/"/>
-    <id>http://yoursite.com/python-with/</id>
-    <published>2019-01-18T07:27:09.000Z</published>
-    <updated>2019-01-18T09:00:36.063Z</updated>
+    <title>pyppeteer</title>
+    <link href="https://tangx1.com/pyppeteer/"/>
+    <id>https://tangx1.com/pyppeteer/</id>
+    <published>2019-01-18T12:30:20.000Z</published>
+    <updated>2019-01-18T12:34:07.290Z</updated>
     
     <summary type="html">
+    
+      puppeteer 是一个 node.js 的库，支持调用 Chrome 的 API 来操纵 Web，相比较 Selenium 或是 PhantomJs，它最大的特点就是它的操作 Dom 可以完全在内存中进行模拟既在V8引擎中处理而不打开浏览器，而且关键是这个是 Chrome 团队在维护，会拥有更好的兼容性和前景。
+    
+    </summary>
+    
+      <category term="爬虫" scheme="https://tangx1.com/categories/%E7%88%AC%E8%99%AB/"/>
+    
+    
+      <category term="Python" scheme="https://tangx1.com/tags/Python/"/>
+    
+      <category term="自动化" scheme="https://tangx1.com/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用with结构打开n个文件</title>
+    <link href="https://tangx1.com/python-with/"/>
+    <id>https://tangx1.com/python-with/</id>
+    <published>2019-01-18T07:27:09.000Z</published>
+    <updated>2019-01-18T10:49:48.900Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="对一个文件读写"><a href="#对一个文件读写" class="headerlink" title="对一个文件读写"></a>对一个文件读写</h1><p>有时候在爬虫中对最后数据的处理可能是将其存入某个文件内，那么此时就可以使用 with 语句对某个文件进行操作。</p><h2 id="写入一个文件"><a href="#写入一个文件" class="headerlink" title="写入一个文件"></a>写入一个文件</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open(filename1, <span class="string">'w'</span>) <span class="keyword">as</span> fp:</span><br><span class="line">    fp.write(item)</span><br></pre></td></tr></table></figure><h2 id="读取一个文件"><a href="#读取一个文件" class="headerlink" title="读取一个文件"></a>读取一个文件</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open(filename1, <span class="string">'r'</span>) <span class="keyword">as</span> fp:</span><br><span class="line">    data = fp.read()</span><br></pre></td></tr></table></figure><h1 id="对多个文件进行读写"><a href="#对多个文件进行读写" class="headerlink" title="对多个文件进行读写"></a>对多个文件进行读写</h1><h2 id="将-A-文件内容写入-B-文件"><a href="#将-A-文件内容写入-B-文件" class="headerlink" title="将 A 文件内容写入 B 文件"></a>将 A 文件内容写入 B 文件</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open(A,<span class="string">'r'</span>) <span class="keyword">as</span> fp1 , open(B,<span class="string">'a'</span>) <span class="keyword">as</span> fp2:</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> fp1:</span><br><span class="line">        fp2.write(line)</span><br></pre></td></tr></table></figure><h2 id="同时读取-A-B-C-三个文件"><a href="#同时读取-A-B-C-三个文件" class="headerlink" title="同时读取 A B C 三个文件"></a>同时读取 A B C 三个文件</h2><p>同时打开三个文件，文件行数一样，要求实现每个文件依次读取一行，然后输出，我们先来看比较容易想到的写法：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open(A, <span class="string">'rb'</span>) <span class="keyword">as</span> fp1:</span><br><span class="line">    <span class="keyword">with</span> open(B, <span class="string">'rb'</span>) <span class="keyword">as</span> fp2:</span><br><span class="line">        <span class="keyword">with</span> open(C, <span class="string">'rb'</span>) <span class="keyword">as</span> fp3:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> fp1:</span><br><span class="line">                j = fp2.readline()</span><br><span class="line">                k = fp3.readline()</span><br><span class="line">                print(i, j, k)</span><br></pre></td></tr></table></figure><p>注意这里只能对单个文件进行for循环读取，不能写成：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i, j, k <span class="keyword">in</span> fp1, fp2, fp3:</span><br><span class="line">    print(i, j, k)</span><br></pre></td></tr></table></figure></p><p>但可使用强大的zip操作：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i, j, k <span class="keyword">in</span> zip(fp1, fp2, fp3):</span><br><span class="line">    print(i, j, k)</span><br></pre></td></tr></table></figure></p><p>这样层层的嵌套未免啰嗦，with结构支持一种更简洁的写法：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open(A, <span class="string">'rb'</span>) <span class="keyword">as</span> fp1, open(B, <span class="string">'rb'</span>) <span class="keyword">as</span> fp2, open(C, <span class="string">'rb'</span>) <span class="keyword">as</span> fp3:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> fp1:</span><br><span class="line">        j = fp2.readline()</span><br><span class="line">        k = fp3.readline()</span><br><span class="line">        print(i, j, k)</span><br></pre></td></tr></table></figure></p><p>或者使用更为优雅的写法，此时需要 <a href="https://docs.python.org/3/library/contextlib.html" target="_blank" rel="noopener">contextlib</a> 语法糖：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> contextlib improt ExitStack</span><br><span class="line"><span class="keyword">with</span> ExitStack() <span class="keyword">as</span> stack:</span><br><span class="line">    files = [stack.enter_context(open(fname)) <span class="keyword">for</span> fname <span class="keyword">in</span> [A, B, C]]</span><br><span class="line">    <span class="keyword">for</span> i, j, k <span class="keyword">in</span> zip(files[<span class="number">0</span>], files[<span class="number">1</span>], files[<span class="number">2</span>]):</span><br><span class="line">        print(i, j, k)</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      with 语句适用于对资源进行访问的场合，确保不管使用过程中是否发生异常都会执行必要的“清理”操作，释放资源，比如文件使用后自动关闭、线程中锁的自动获取和释放等。
     
     </summary>
     
@@ -32,8 +58,8 @@
   
   <entry>
     <title>mysql</title>
-    <link href="http://yoursite.com/mysql/"/>
-    <id>http://yoursite.com/mysql/</id>
+    <link href="https://tangx1.com/mysql/"/>
+    <id>https://tangx1.com/mysql/</id>
     <published>2019-01-16T18:24:07.000Z</published>
     <updated>2019-01-16T19:48:59.917Z</updated>
     
@@ -45,17 +71,17 @@
     
     </summary>
     
-      <category term="数据库" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+      <category term="数据库" scheme="https://tangx1.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     
-      <category term="数据库" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+      <category term="数据库" scheme="https://tangx1.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
   </entry>
   
   <entry>
     <title>域名ssl证书部署到服务器</title>
-    <link href="http://yoursite.com/nginx/"/>
-    <id>http://yoursite.com/nginx/</id>
+    <link href="https://tangx1.com/nginx/"/>
+    <id>https://tangx1.com/nginx/</id>
     <published>2019-01-15T01:11:41.000Z</published>
     <updated>2019-01-16T15:20:21.331Z</updated>
     
@@ -67,19 +93,19 @@
     
     </summary>
     
-      <category term="Nginx" scheme="http://yoursite.com/categories/Nginx/"/>
+      <category term="Nginx" scheme="https://tangx1.com/categories/Nginx/"/>
     
     
-      <category term="服务器" scheme="http://yoursite.com/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+      <category term="服务器" scheme="https://tangx1.com/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
-      <category term="Nginx" scheme="http://yoursite.com/tags/Nginx/"/>
+      <category term="Nginx" scheme="https://tangx1.com/tags/Nginx/"/>
     
   </entry>
   
   <entry>
     <title>Python中的网络编程</title>
-    <link href="http://yoursite.com/socket/"/>
-    <id>http://yoursite.com/socket/</id>
+    <link href="https://tangx1.com/socket/"/>
+    <id>https://tangx1.com/socket/</id>
     <published>2019-01-12T05:48:00.000Z</published>
     <updated>2019-01-12T06:34:49.923Z</updated>
     
@@ -91,17 +117,17 @@
     
     </summary>
     
-      <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
+      <category term="Python" scheme="https://tangx1.com/categories/Python/"/>
     
     
-      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+      <category term="Python" scheme="https://tangx1.com/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>bilibili之弹幕爬虫</title>
-    <link href="http://yoursite.com/bilibili_danmu/"/>
-    <id>http://yoursite.com/bilibili_danmu/</id>
+    <link href="https://tangx1.com/bilibili_danmu/"/>
+    <id>https://tangx1.com/bilibili_danmu/</id>
     <published>2019-01-08T13:10:13.000Z</published>
     <updated>2019-01-18T06:37:46.904Z</updated>
     
@@ -113,17 +139,17 @@
     
     </summary>
     
-      <category term="爬虫" scheme="http://yoursite.com/categories/%E7%88%AC%E8%99%AB/"/>
+      <category term="爬虫" scheme="https://tangx1.com/categories/%E7%88%AC%E8%99%AB/"/>
     
     
-      <category term="爬虫" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
+      <category term="爬虫" scheme="https://tangx1.com/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
   <entry>
     <title>Scrapy模拟登录豆瓣网初级篇</title>
-    <link href="http://yoursite.com/scrapy_login/"/>
-    <id>http://yoursite.com/scrapy_login/</id>
+    <link href="https://tangx1.com/scrapy_login/"/>
+    <id>https://tangx1.com/scrapy_login/</id>
     <published>2019-01-03T04:47:38.000Z</published>
     <updated>2019-01-05T08:04:00.958Z</updated>
     
@@ -136,18 +162,18 @@
     </summary>
     
     
-      <category term="爬虫" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
+      <category term="爬虫" scheme="https://tangx1.com/tags/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+      <category term="Python" scheme="https://tangx1.com/tags/Python/"/>
     
-      <category term="Scrapy" scheme="http://yoursite.com/tags/Scrapy/"/>
+      <category term="Scrapy" scheme="https://tangx1.com/tags/Scrapy/"/>
     
   </entry>
   
   <entry>
     <title>Scrapy模拟登录豆瓣网进阶篇</title>
-    <link href="http://yoursite.com/scrapy-login-captcha/"/>
-    <id>http://yoursite.com/scrapy-login-captcha/</id>
+    <link href="https://tangx1.com/scrapy-login-captcha/"/>
+    <id>https://tangx1.com/scrapy-login-captcha/</id>
     <published>2019-01-03T04:47:38.000Z</published>
     <updated>2019-01-05T15:03:09.697Z</updated>
     
@@ -160,20 +186,20 @@
     </summary>
     
     
-      <category term="爬虫" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
+      <category term="爬虫" scheme="https://tangx1.com/tags/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+      <category term="Python" scheme="https://tangx1.com/tags/Python/"/>
     
-      <category term="Scrapy" scheme="http://yoursite.com/tags/Scrapy/"/>
+      <category term="Scrapy" scheme="https://tangx1.com/tags/Scrapy/"/>
     
-      <category term="验证码" scheme="http://yoursite.com/tags/%E9%AA%8C%E8%AF%81%E7%A0%81/"/>
+      <category term="验证码" scheme="https://tangx1.com/tags/%E9%AA%8C%E8%AF%81%E7%A0%81/"/>
     
   </entry>
   
   <entry>
     <title>七牛云数据迁移至网易nos</title>
-    <link href="http://yoursite.com/qiniu/"/>
-    <id>http://yoursite.com/qiniu/</id>
+    <link href="https://tangx1.com/qiniu/"/>
+    <id>https://tangx1.com/qiniu/</id>
     <published>2018-10-28T05:52:03.000Z</published>
     <updated>2019-01-16T19:54:06.642Z</updated>
     
@@ -185,15 +211,15 @@
     
     </summary>
     
-      <category term="日常" scheme="http://yoursite.com/categories/%E6%97%A5%E5%B8%B8/"/>
+      <category term="日常" scheme="https://tangx1.com/categories/%E6%97%A5%E5%B8%B8/"/>
     
     
   </entry>
   
   <entry>
     <title>PHP框架--Laravel</title>
-    <link href="http://yoursite.com/laravel_admin/"/>
-    <id>http://yoursite.com/laravel_admin/</id>
+    <link href="https://tangx1.com/laravel_admin/"/>
+    <id>https://tangx1.com/laravel_admin/</id>
     <published>2018-10-09T16:10:33.000Z</published>
     <updated>2019-01-17T16:06:30.537Z</updated>
     
@@ -205,17 +231,17 @@
     
     </summary>
     
-      <category term="PHP" scheme="http://yoursite.com/categories/PHP/"/>
+      <category term="PHP" scheme="https://tangx1.com/categories/PHP/"/>
     
     
-      <category term="PHP" scheme="http://yoursite.com/tags/PHP/"/>
+      <category term="PHP" scheme="https://tangx1.com/tags/PHP/"/>
     
   </entry>
   
   <entry>
     <title>Python算法--快速排序</title>
-    <link href="http://yoursite.com/quick_sort/"/>
-    <id>http://yoursite.com/quick_sort/</id>
+    <link href="https://tangx1.com/quick_sort/"/>
+    <id>https://tangx1.com/quick_sort/</id>
     <published>2018-05-22T16:29:26.000Z</published>
     <updated>2019-01-03T07:24:21.079Z</updated>
     
@@ -228,14 +254,14 @@
     </summary>
     
     
-      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="https://tangx1.com/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
   <entry>
     <title>Python算法--插入排序</title>
-    <link href="http://yoursite.com/insert_sort/"/>
-    <id>http://yoursite.com/insert_sort/</id>
+    <link href="https://tangx1.com/insert_sort/"/>
+    <id>https://tangx1.com/insert_sort/</id>
     <published>2018-05-22T00:07:20.000Z</published>
     <updated>2019-01-03T07:15:23.268Z</updated>
     
@@ -252,8 +278,8 @@
   
   <entry>
     <title>Python算法--选择排序</title>
-    <link href="http://yoursite.com/select_sort/"/>
-    <id>http://yoursite.com/select_sort/</id>
+    <link href="https://tangx1.com/select_sort/"/>
+    <id>https://tangx1.com/select_sort/</id>
     <published>2018-05-21T21:58:47.000Z</published>
     <updated>2019-01-15T02:45:15.133Z</updated>
     
@@ -265,21 +291,21 @@
     
     </summary>
     
-      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="https://tangx1.com/categories/%E7%AE%97%E6%B3%95/"/>
     
-      <category term="Python" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/Python/"/>
+      <category term="Python" scheme="https://tangx1.com/categories/%E7%AE%97%E6%B3%95/Python/"/>
     
     
-      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="https://tangx1.com/tags/%E7%AE%97%E6%B3%95/"/>
     
-      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+      <category term="Python" scheme="https://tangx1.com/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>冒泡排序</title>
-    <link href="http://yoursite.com/bubble_sort/"/>
-    <id>http://yoursite.com/bubble_sort/</id>
+    <link href="https://tangx1.com/bubble_sort/"/>
+    <id>https://tangx1.com/bubble_sort/</id>
     <published>2018-05-21T16:25:42.000Z</published>
     <updated>2019-01-03T07:27:29.359Z</updated>
     
@@ -292,14 +318,14 @@
     </summary>
     
     
-      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="https://tangx1.com/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
   <entry>
     <title>Python爬虫--Scrapy爬取简书全站文章</title>
-    <link href="http://yoursite.com/jianshu/"/>
-    <id>http://yoursite.com/jianshu/</id>
+    <link href="https://tangx1.com/jianshu/"/>
+    <id>https://tangx1.com/jianshu/</id>
     <published>2018-05-18T07:25:17.000Z</published>
     <updated>2019-01-15T02:50:35.767Z</updated>
     
@@ -312,14 +338,14 @@
     </summary>
     
     
-      <category term="Scrapy" scheme="http://yoursite.com/tags/Scrapy/"/>
+      <category term="Scrapy" scheme="https://tangx1.com/tags/Scrapy/"/>
     
   </entry>
   
   <entry>
     <title>Scrapy</title>
-    <link href="http://yoursite.com/scrapy/"/>
-    <id>http://yoursite.com/scrapy/</id>
+    <link href="https://tangx1.com/scrapy/"/>
+    <id>https://tangx1.com/scrapy/</id>
     <published>2018-05-10T07:54:09.000Z</published>
     <updated>2019-01-03T07:48:06.672Z</updated>
     
@@ -332,18 +358,18 @@
     </summary>
     
     
-      <category term="爬虫" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
+      <category term="爬虫" scheme="https://tangx1.com/tags/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+      <category term="Python" scheme="https://tangx1.com/tags/Python/"/>
     
-      <category term="Scrapy" scheme="http://yoursite.com/tags/Scrapy/"/>
+      <category term="Scrapy" scheme="https://tangx1.com/tags/Scrapy/"/>
     
   </entry>
   
   <entry>
     <title>Github模拟登陆</title>
-    <link href="http://yoursite.com/github/"/>
-    <id>http://yoursite.com/github/</id>
+    <link href="https://tangx1.com/github/"/>
+    <id>https://tangx1.com/github/</id>
     <published>2018-05-01T09:20:41.000Z</published>
     <updated>2019-01-03T10:39:56.290Z</updated>
     
@@ -356,14 +382,14 @@
     </summary>
     
     
-      <category term="爬虫" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
+      <category term="爬虫" scheme="https://tangx1.com/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
   <entry>
     <title>Python爬虫--美团美食信息</title>
-    <link href="http://yoursite.com/meituanspider/"/>
-    <id>http://yoursite.com/meituanspider/</id>
+    <link href="https://tangx1.com/meituanspider/"/>
+    <id>https://tangx1.com/meituanspider/</id>
     <published>2018-04-25T09:43:37.000Z</published>
     <updated>2019-01-15T02:47:05.254Z</updated>
     
@@ -376,14 +402,14 @@
     </summary>
     
     
-      <category term="爬虫" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
+      <category term="爬虫" scheme="https://tangx1.com/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
   <entry>
     <title>Python爬虫之淘宝(二)</title>
-    <link href="http://yoursite.com/taobaospider2/"/>
-    <id>http://yoursite.com/taobaospider2/</id>
+    <link href="https://tangx1.com/taobaospider2/"/>
+    <id>https://tangx1.com/taobaospider2/</id>
     <published>2018-04-18T08:00:33.000Z</published>
     <updated>2019-01-15T02:49:22.537Z</updated>
     
@@ -395,17 +421,17 @@
     
     </summary>
     
-      <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
+      <category term="Python" scheme="https://tangx1.com/categories/Python/"/>
     
     
-      <category term="爬虫" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
+      <category term="爬虫" scheme="https://tangx1.com/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
   <entry>
     <title>Python爬虫之淘宝(一)</title>
-    <link href="http://yoursite.com/taobaospider1/"/>
-    <id>http://yoursite.com/taobaospider1/</id>
+    <link href="https://tangx1.com/taobaospider1/"/>
+    <id>https://tangx1.com/taobaospider1/</id>
     <published>2018-04-17T07:59:42.000Z</published>
     <updated>2019-01-15T19:17:38.719Z</updated>
     
@@ -417,38 +443,14 @@
     
     </summary>
     
-      <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
+      <category term="Python" scheme="https://tangx1.com/categories/Python/"/>
     
     
-      <category term="爬虫" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
+      <category term="爬虫" scheme="https://tangx1.com/tags/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+      <category term="Python" scheme="https://tangx1.com/tags/Python/"/>
     
-      <category term="selenium" scheme="http://yoursite.com/tags/selenium/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python爬虫--京东商品评论</title>
-    <link href="http://yoursite.com/jd_comments/"/>
-    <id>http://yoursite.com/jd_comments/</id>
-    <published>2018-04-15T12:11:19.000Z</published>
-    <updated>2019-01-15T02:50:24.507Z</updated>
-    
-    <content type="html"><![CDATA[<hr><p><img src="https://hexo-pics.nos-eastchina1.126.net/jdcomments/jd-logo.png" alt=""></p><hr><p>京东网站是我经常去购物的网站，现在来爬京东商品的评论。有时候网速慢，打开评论的时候还要等一会，一直在加载，也证明了其评论是网页动态加载的。<br>而去爬取动态加载的网页，无非就是查看其 js 请求和使用 selenium 工具，这里使用了前者的方法，比较简单。</p><hr><h1 id="查看动态-js-请求"><a href="#查看动态-js-请求" class="headerlink" title="查看动态 js 请求"></a>查看动态 js 请求</h1><p>先打开开发者工具，然后再打开京东商品 iPhone X 评论页面，可以看到，请求列表中有一个 productPageComments 文件，打开它，点击 Preview 标签，下面的数据是 json 形式，再点击 Comments ，查看其中正是需要的评论数据。</p><p>js 文件网址 : <a href="https://sclub.jd.com/comment/productPageComments.action?callback=fetchJSON_comment98vv75398&amp;productId=5089253&amp;score=0&amp;sortType=5&amp;page=0&amp;pageSize=10&amp;isShadowSku=0&amp;rid=0&amp;fold=1" target="_blank" rel="noopener">https://sclub.jd.com/comment/productPageComments.action?callback=fetchJSON_comment98vv75398&amp;productId=5089253&amp;score=0&amp;sortType=5&amp;page=0&amp;pageSize=10&amp;isShadowSku=0&amp;rid=0&amp;fold=1</a></p><p><img src="https://hexo-pics.nos-eastchina1.126.net/jdcomments/jd_com1.jpg" alt=""></p><h1 id="对-js-文件进行请求"><a href="#对-js-文件进行请求" class="headerlink" title="对 js 文件进行请求"></a>对 js 文件进行请求</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.62 Safari/537.36'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">url = <span class="string">'https://sclub.jd.com/comment/productPageComments.action?callback=fetchJSON_comment98vv75398&amp;productId=5089253&amp;score=0&amp;sortType=5&amp;page=0&amp;pageSize=10&amp;isShadowSku=0&amp;fold=1'</span></span><br><span class="line">response = requests.get(url, headers=headers)</span><br><span class="line">print(response.text)</span><br></pre></td></tr></table></figure><p>在这段代码中，先查看对 js 文件网址请求之后，得到的数据是什么。</p><p><img src="https://hexo-pics.nos-eastchina1.126.net/jdcomments/jd_com2.jpg" alt=""></p><p>输出的数据为 json 形式，但是数据首尾都有一些多余数据，为了把它变成正常的 json 形式，我们用 replace 方法替换掉多余部分。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">result = response.replace(<span class="string">'fetchJSON_comment98vv75398('</span>, <span class="string">''</span>)</span><br><span class="line">result = result.replace(<span class="string">');'</span>, <span class="string">''</span>)</span><br><span class="line">json_so = json.loads(result)</span><br><span class="line">print(json_so)</span><br></pre></td></tr></table></figure><p><img src="https://hexo-pics.nos-eastchina1.126.net/jdcomments/jd_com3.jpg" alt=""></p><p>这样我们输出的数据就是正常的 json 格式，可以进行提取信息的操作了。</p><h1 id="提取数据并构造翻页网址"><a href="#提取数据并构造翻页网址" class="headerlink" title="提取数据并构造翻页网址"></a>提取数据并构造翻页网址</h1><p>把上一步输出的数据放入 <a href="https://www.json.cn/" target="_blank" rel="noopener">json在线解析</a> 网页中进行解析，得到如下图。</p><p><img src="https://hexo-pics.nos-eastchina1.126.net/jdcomments/jd_com4.jpg" alt=""></p><p>证明我们上一步操作没问题，接下来提取数据。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">items = json_so.get(<span class="string">'comments'</span>)</span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> items:</span><br><span class="line">   id = item.get(<span class="string">'id'</span>)</span><br><span class="line">   content = item.get(<span class="string">'content'</span>)</span><br><span class="line">   create_time = item.get(<span class="string">'creationTime'</span>)</span><br><span class="line">   nick_name = item.get(<span class="string">'nickname'</span>)</span><br><span class="line">   client = item.get(<span class="string">'userClientShow'</span>)</span><br><span class="line">   print(id, nick_name, content, create_time, client)</span><br></pre></td></tr></table></figure></p><p>这样就可以得到商品评论的 id， 内容，评论时间，评论人昵称和评论人客户端信息，如下图。</p><p><img src="https://hexo-pics.nos-eastchina1.126.net/jdcomments/jd_com5.jpg" alt=""></p><p>接下来要构造翻页网址，通过观察每一评论页网址，发现其参数中有个 page 参数，这个是页码参数，所以我们只要对 url 中传入不同的 page 值，就可以进行翻页。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> page <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">    url = <span class="string">'https://sclub.jd.com/comment/productPageComments.action?callback=fetchJSON_comment98vv75398&amp;productId=5089253&amp;score=0&amp;sortType=5&amp;page='</span> + str(page) + <span class="string">'&amp;pageSize=10&amp;isShadowSku=0&amp;fold=1'</span></span><br></pre></td></tr></table></figure></p><h1 id="整理数据"><a href="#整理数据" class="headerlink" title="整理数据"></a>整理数据</h1><p>最后把评论信息都写入文件中，如下图。</p><h2 id="保存至本地文本文件"><a href="#保存至本地文本文件" class="headerlink" title="保存至本地文本文件"></a>保存至本地文本文件</h2><p><img src="https://hexo-pics.nos-eastchina1.126.net/jdcomments/jd_com6.jpg" alt=""></p><h2 id="保存至MongoDB数据库"><a href="#保存至MongoDB数据库" class="headerlink" title="保存至MongoDB数据库"></a>保存至MongoDB数据库</h2><p><img src="https://hexo-pics.nos-eastchina1.126.net/jdcomments/jdcommongo.jpg" alt=""></p><h1 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> pymongo</span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.62 Safari/537.36'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">file = open(<span class="string">'jd_com.txt'</span>, <span class="string">'w'</span>, encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">client = pymongo.MongoClient(<span class="string">'localhost'</span>, <span class="number">27017</span>)</span><br><span class="line">db = client[<span class="string">'jd'</span>]</span><br><span class="line">collection = db[<span class="string">'jdcom_spider'</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> page <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">    url = <span class="string">'https://sclub.jd.com/comment/productPageComments.action?callback=fetchJSON_comment98vv75398&amp;productId=5089253&amp;score=0&amp;sortType=5&amp;page='</span> + str(page) + <span class="string">'&amp;pageSize=10&amp;isShadowSku=0&amp;fold=1'</span></span><br><span class="line">    response = requests.get(url, headers=headers)</span><br><span class="line">    html = response.text</span><br><span class="line">    result = html.replace(<span class="string">'fetchJSON_comment98vv75398('</span>, <span class="string">''</span>)</span><br><span class="line">    result = result.replace(<span class="string">');'</span>, <span class="string">''</span>)</span><br><span class="line">    json_so = json.loads(result)</span><br><span class="line">    items = json_so.get(<span class="string">'comments'</span>)</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> items:</span><br><span class="line">        id = item.get(<span class="string">'id'</span>)</span><br><span class="line">        content = item.get(<span class="string">'content'</span>)</span><br><span class="line">        create_time = item.get(<span class="string">'creationTime'</span>)</span><br><span class="line">        nick_name = item.get(<span class="string">'nickname'</span>)</span><br><span class="line">        client = item.get(<span class="string">'userClientShow'</span>)</span><br><span class="line">        data = &#123;</span><br><span class="line">            <span class="string">'id'</span>: id,</span><br><span class="line">            <span class="string">'内容'</span>: content,</span><br><span class="line">            <span class="string">'评论时间'</span>: create_time,</span><br><span class="line">            <span class="string">'昵称'</span>: nick_name,</span><br><span class="line">            <span class="string">'客户端'</span>: client</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment"># 保存至本地文本文件</span></span><br><span class="line">        file.write(str(data) + <span class="string">'\n'</span>)</span><br><span class="line">        <span class="comment"># 保存至MongoDB数据库</span></span><br><span class="line">        <span class="keyword">if</span> collection.insert(data):</span><br><span class="line">            print(<span class="string">'保存至MongoDB成功'</span>)</span><br></pre></td></tr></table></figure><hr>]]></content>
-    
-    <summary type="html">
-    
-      京东网站是我经常去购物的网站，现在来爬京东商品的评论。有时候网速慢，打开评论的时候还要等一会，一直在加载，也证明了其评论是网页动态加载的。
-    
-    </summary>
-    
-      <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
-    
-    
-      <category term="爬虫" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
-    
-      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+      <category term="selenium" scheme="https://tangx1.com/tags/selenium/"/>
     
   </entry>
   

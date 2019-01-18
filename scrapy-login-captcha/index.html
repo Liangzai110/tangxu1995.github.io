@@ -144,7 +144,7 @@
 <meta name="keywords" content="爬虫,Python,Scrapy,验证码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Scrapy模拟登录豆瓣网进阶篇">
-<meta property="og:url" content="http://yoursite.com/scrapy-login-captcha/index.html">
+<meta property="og:url" content="https://tangx1.com/scrapy-login-captcha/index.html">
 <meta property="og:site_name" content="2048">
 <meta property="og:description" content="上一篇文章中使用 Scrapy 模拟登录豆瓣网，并且进行人工识别验证码进行登录，这一篇中我们使用第三方验证码识别平台去自动识别 Scrapy 登录过程中的验证码。">
 <meta property="og:locale" content="zh-CN">
@@ -162,7 +162,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/scrapy-login-captcha/">
+  <link rel="canonical" href="https://tangx1.com/scrapy-login-captcha/">
 
 
 
@@ -421,7 +421,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/scrapy-login-captcha/">
+    <link itemprop="mainEntityOfPage" href="https://tangx1.com/scrapy-login-captcha/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tang">
@@ -549,6 +549,29 @@
     
 
     
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Tang</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://tangx1.com/scrapy-login-captcha/" title="Scrapy模拟登录豆瓣网进阶篇">https://tangx1.com/scrapy-login-captcha/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
 
     <div>
     
@@ -585,8 +608,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/bookSpdier2/" rel="next" title="多进程爬虫">
-                <i class="fa fa-chevron-left"></i> 多进程爬虫
+              <a href="/scrapy_login/" rel="next" title="Scrapy模拟登录豆瓣网初级篇">
+                <i class="fa fa-chevron-left"></i> Scrapy模拟登录豆瓣网初级篇
               </a>
             
           </div>
@@ -595,8 +618,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/scrapy_login/" rel="prev" title="Scrapy模拟登录豆瓣网初级篇">
-                Scrapy模拟登录豆瓣网初级篇 <i class="fa fa-chevron-right"></i>
+              <a href="/flask/" rel="prev" title="flask">
+                flask <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -673,7 +696,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -747,7 +770,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">12</span>
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">标签</span>
                   
                 </div>
@@ -766,6 +791,15 @@
 
           
 
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
           
 
           
@@ -834,8 +868,28 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共18.2k字</span>
+  <span class="post-meta-divider">|</span>
+  <span class="post-count">博客全站共18.6k字</span>
 </div>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("02/14/2018 12:49:00");//此处修改你的建站时间或者网站上线时间 
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+    } 
+setInterval("createtime()",250);
+</script>
+
 
         
 

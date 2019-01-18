@@ -140,24 +140,18 @@
 
 
 
-  <meta name="description" content="在爬虫过程中经常遇到这种情况，很多文字或数字信息在网页中显示得很正常，但是查看源代码时有些字体显示为很奇怪的字符串更甚至字符缺失。猫眼的数据就是如前者，数字信息在网页源代码中显示为某些字符串，写下此篇，以做记录。">
+  <meta name="description" content="puppeteer 是一个 node.js 的库，支持调用 Chrome 的 API 来操纵 Web，相比较 Selenium 或是 PhantomJs，它最大的特点就是它的操作 Dom 可以完全在内存中进行模拟既在V8引擎中处理而不打开浏览器，而且关键是这个是 Chrome 团队在维护，会拥有更好的兼容性和前景。">
+<meta name="keywords" content="Python,自动化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python爬虫--猫眼加密字符">
-<meta property="og:url" content="https://tangx1.com/maoyan_encrypt/index.html">
+<meta property="og:title" content="pyppeteer">
+<meta property="og:url" content="https://tangx1.com/pyppeteer/index.html">
 <meta property="og:site_name" content="2048">
-<meta property="og:description" content="在爬虫过程中经常遇到这种情况，很多文字或数字信息在网页中显示得很正常，但是查看源代码时有些字体显示为很奇怪的字符串更甚至字符缺失。猫眼的数据就是如前者，数字信息在网页源代码中显示为某些字符串，写下此篇，以做记录。">
+<meta property="og:description" content="puppeteer 是一个 node.js 的库，支持调用 Chrome 的 API 来操纵 Web，相比较 Selenium 或是 PhantomJs，它最大的特点就是它的操作 Dom 可以完全在内存中进行模拟既在V8引擎中处理而不打开浏览器，而且关键是这个是 Chrome 团队在维护，会拥有更好的兼容性和前景。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://hexo-pics.nos-eastchina1.126.net/maoyan/maoyan-logo.png">
-<meta property="og:image" content="https://hexo-pics.nos-eastchina1.126.net/maoyan/maoyanjiami1.png">
-<meta property="og:image" content="https://hexo-pics.nos-eastchina1.126.net/maoyan/maoyanen1.png">
-<meta property="og:image" content="https://hexo-pics.nos-eastchina1.126.net/maoyan/font.png">
-<meta property="og:image" content="https://hexo-pics.nos-eastchina1.126.net/maoyan/baiduwoff.png">
-<meta property="og:image" content="https://hexo-pics.nos-eastchina1.126.net/maoyan/glyf.png">
-<meta property="og:updated_time" content="2019-01-15T02:51:15.617Z">
+<meta property="og:updated_time" content="2019-01-18T12:34:07.290Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python爬虫--猫眼加密字符">
-<meta name="twitter:description" content="在爬虫过程中经常遇到这种情况，很多文字或数字信息在网页中显示得很正常，但是查看源代码时有些字体显示为很奇怪的字符串更甚至字符缺失。猫眼的数据就是如前者，数字信息在网页源代码中显示为某些字符串，写下此篇，以做记录。">
-<meta name="twitter:image" content="https://hexo-pics.nos-eastchina1.126.net/maoyan/maoyan-logo.png">
+<meta name="twitter:title" content="pyppeteer">
+<meta name="twitter:description" content="puppeteer 是一个 node.js 的库，支持调用 Chrome 的 API 来操纵 Web，相比较 Selenium 或是 PhantomJs，它最大的特点就是它的操作 Dom 可以完全在内存中进行模拟既在V8引擎中处理而不打开浏览器，而且关键是这个是 Chrome 团队在维护，会拥有更好的兼容性和前景。">
 
 
 
@@ -166,7 +160,7 @@
 
 
 
-  <link rel="canonical" href="https://tangx1.com/maoyan_encrypt/">
+  <link rel="canonical" href="https://tangx1.com/pyppeteer/">
 
 
 
@@ -176,7 +170,7 @@
   };
 </script>
 
-  <title>Python爬虫--猫眼加密字符 | 2048</title>
+  <title>pyppeteer | 2048</title>
   
 
 
@@ -425,7 +419,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tangx1.com/maoyan_encrypt/">
+    <link itemprop="mainEntityOfPage" href="https://tangx1.com/pyppeteer/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tang">
@@ -442,7 +436,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Python爬虫--猫眼加密字符
+          <h1 class="post-title" itemprop="name headline">pyppeteer
 
               
             
@@ -468,12 +462,30 @@
                 
               
 
-              <time title="创建时间：2018-11-12 16:48:11" itemprop="dateCreated datePublished" datetime="2018-11-12T16:48:11+08:00">2018-11-12</time>
+              <time title="创建时间：2019-01-18 20:30:20" itemprop="dateCreated datePublished" datetime="2019-01-18T20:30:20+08:00">2019-01-18</time>
             
 
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/爬虫/" itemprop="url" rel="index"><span itemprop="name">爬虫</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -483,8 +495,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/maoyan_encrypt/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/maoyan_encrypt/" itemprop="commentCount"></span>
+                <a href="/pyppeteer/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/pyppeteer/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -492,7 +504,7 @@
 
           
           
-            <span id="/maoyan_encrypt/" class="leancloud_visitors" data-flag-title="Python爬虫--猫眼加密字符">
+            <span id="/pyppeteer/" class="leancloud_visitors" data-flag-title="pyppeteer">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -510,7 +522,7 @@
           
 
           
-            <div class="post-description">在爬虫过程中经常遇到这种情况，很多文字或数字信息在网页中显示得很正常，但是查看源代码时有些字体显示为很奇怪的字符串更甚至字符缺失。猫眼的数据就是如前者，数字信息在网页源代码中显示为某些字符串，写下此篇，以做记录。</div>
+            <div class="post-description">puppeteer 是一个 node.js 的库，支持调用 Chrome 的 API 来操纵 Web，相比较 Selenium 或是 PhantomJs，它最大的特点就是它的操作 Dom 可以完全在内存中进行模拟既在V8引擎中处理而不打开浏览器，而且关键是这个是 Chrome 团队在维护，会拥有更好的兼容性和前景。</div>
           
 
         </div>
@@ -526,33 +538,7 @@
       
 
       
-        <hr>
-<p><img src="https://hexo-pics.nos-eastchina1.126.net/maoyan/maoyan-logo.png" alt=""></p>
-<hr>
-<blockquote>
-<p>参考文章: <a href="http://blog.csdn.net/fdipzone/article/details/68166388" target="_blank" rel="noopener">利用自定义web-font实现数据防采集</a></p>
-</blockquote>
-<p>先挂网站：<a href="http://maoyan.com/films/1203" target="_blank" rel="noopener">http://maoyan.com/films/1203</a></p>
-<p>这篇是排名第一的《霸王别姬》电影详情页面，打开 F12 控制台后，去点选其 <code>评分人数</code> 和 <code>累计票房</code> ，可以看到在页面上能正常查看的数字到了控制台上就变成了n多的小框框，如下图，这是怎么回事呢？</p>
-<p><img src="https://hexo-pics.nos-eastchina1.126.net/maoyan/maoyanjiami1.png" alt=""></p>
-<h1 id="查找字体源"><a href="#查找字体源" class="headerlink" title="查找字体源"></a>查找字体源</h1><p>右键查看网页源代码，找到评分人数的位置，我们发现原来这些数字的地方并不是真的小框框，而是一堆看不懂的数字，它们稍微有些规律，都是 &amp;#x 开头的字符，而且一小串字符就代表一个数字，那这是啥意思捏，再来看，其属性是 stonefont 这一类。</p>
-<p><img src="https://hexo-pics.nos-eastchina1.126.net/maoyan/maoyanen1.png" alt=""></p>
-<p>在网页源代码中搜索 stonefont ，发现了 @font-face 定义方法。而且还发现，在每次访问刷新页面时，红框中的字体文件地址也会发生改变，因此其加载方式为动态生成字体。</p>
-<p><img src="https://hexo-pics.nos-eastchina1.126.net/maoyan/font.png" alt=""></p>
-<h1 id="字体解析"><a href="#字体解析" class="headerlink" title="字体解析"></a>字体解析</h1><p>现在直接访问字体文件网址，将其下载下来，看看其规律，由于 mac 上不能直接打开 woff 文件，后找到工具<a href="http://fontstore.baidu.com/static/editor/index.html" target="_blank" rel="noopener">百度字体编辑器</a>，在网页中直接打开刚下载的 woff 文件，可以看到下图中对应数字的下方的一小串字符，是不是和之前网页中看到的有些相似，区别只是将 uni 换成了 &amp;#x ，然后将所有字符小写，因此可以找到目前这一个字体文件其中的字体规律。</p>
-<p><img src="https://hexo-pics.nos-eastchina1.126.net/maoyan/baiduwoff.png" alt=""></p>
-<p>这里用到了 python 的 fontTools 库，使用它来帮我们解析字体。</p>
-<p>安装方法如下：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip3 <span class="keyword">install</span> fontTools</span><br></pre></td></tr></table></figure></p>
-<p>安装好解析库后，在脚本代码中将我们下载的 woff 文件转换成为 xml 文件，方便我们查看，得到下图结果。</p>
-<p><img src="https://hexo-pics.nos-eastchina1.126.net/maoyan/glyf.png" alt=""></p>
-<p>上面是整个数字组，从 name=”uniE6DC” 开始依次对应百度字体编辑器中的数字，到这里，已经得到了一套字体的映射规律，但是每次刷新字体文件都会变，这个问题怎么办呢，接着往下看。</p>
-<p>接下来查看其中一个字符的字形数据。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TTGlyph</span> <span class="attr">name</span>=<span class="string">"uniE6DC"</span> <span class="attr">xMin</span>=<span class="string">"0"</span> <span class="attr">yMin</span>=<span class="string">"-13"</span> <span class="attr">xMax</span>=<span class="string">"511"</span> <span class="attr">yMax</span>=<span class="string">"719"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">contour</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"130"</span> <span class="attr">y</span>=<span class="string">"201"</span> <span class="attr">on</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"145"</span> <span class="attr">y</span>=<span class="string">"126"</span> <span class="attr">on</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"216"</span> <span class="attr">y</span>=<span class="string">"60"</span> <span class="attr">on</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"270"</span> <span class="attr">y</span>=<span class="string">"60"</span> <span class="attr">on</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"332"</span> <span class="attr">y</span>=<span class="string">"60"</span> <span class="attr">on</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"417"</span> <span class="attr">y</span>=<span class="string">"146"</span> <span class="attr">on</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"417"</span> <span class="attr">y</span>=<span class="string">"270"</span> <span class="attr">on</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"378"</span> <span class="attr">y</span>=<span class="string">"309"</span> <span class="attr">on</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"337"</span> <span class="attr">y</span>=<span class="string">"349"</span> <span class="attr">on</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"277"</span> <span class="attr">y</span>=<span class="string">"349"</span> <span class="attr">on</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"251"</span> <span class="attr">y</span>=<span class="string">"349"</span> <span class="attr">on</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"215"</span> <span class="attr">y</span>=<span class="string">"339"</span> <span class="attr">on</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"225"</span> <span class="attr">y</span>=<span class="string">"416"</span> <span class="attr">on</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"239"</span> <span class="attr">y</span>=<span class="string">"415"</span> <span class="attr">on</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"296"</span> <span class="attr">y</span>=<span class="string">"415"</span> <span class="attr">on</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"385"</span> <span class="attr">y</span>=<span class="string">"474"</span> <span class="attr">on</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"385"</span> <span class="attr">y</span>=<span class="string">"535"</span> <span class="attr">on</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"385"</span> <span class="attr">y</span>=<span class="string">"583"</span> <span class="attr">on</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"322"</span> <span class="attr">y</span>=<span class="string">"646"</span> <span class="attr">on</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"268"</span> <span class="attr">y</span>=<span class="string">"646"</span> <span class="attr">on</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"217"</span> <span class="attr">y</span>=<span class="string">"646"</span> <span class="attr">on</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"149"</span> <span class="attr">y</span>=<span class="string">"584"</span> <span class="attr">on</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"139"</span> <span class="attr">y</span>=<span class="string">"518"</span> <span class="attr">on</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"51"</span> <span class="attr">y</span>=<span class="string">"533"</span> <span class="attr">on</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"67"</span> <span class="attr">y</span>=<span class="string">"623"</span> <span class="attr">on</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"124"</span> <span class="attr">y</span>=<span class="string">"670"</span> <span class="attr">on</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"182"</span> <span class="attr">y</span>=<span class="string">"719"</span> <span class="attr">on</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"266"</span> <span class="attr">y</span>=<span class="string">"719"</span> <span class="attr">on</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"324"</span> <span class="attr">y</span>=<span class="string">"719"</span> <span class="attr">on</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"374"</span> <span class="attr">y</span>=<span class="string">"693"</span> <span class="attr">on</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"423"</span> <span class="attr">y</span>=<span class="string">"669"</span> <span class="attr">on</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"476"</span> <span class="attr">y</span>=<span class="string">"581"</span> <span class="attr">on</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"476"</span> <span class="attr">y</span>=<span class="string">"485"</span> <span class="attr">on</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"426"</span> <span class="attr">y</span>=<span class="string">"410"</span> <span class="attr">on</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"377"</span> <span class="attr">y</span>=<span class="string">"388"</span> <span class="attr">on</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"440"</span> <span class="attr">y</span>=<span class="string">"373"</span> <span class="attr">on</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"511"</span> <span class="attr">y</span>=<span class="string">"281"</span> <span class="attr">on</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"511"</span> <span class="attr">y</span>=<span class="string">"211"</span> <span class="attr">on</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"511"</span> <span class="attr">y</span>=<span class="string">"118"</span> <span class="attr">on</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"374"</span> <span class="attr">y</span>=<span class="string">"-13"</span> <span class="attr">on</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"270"</span> <span class="attr">y</span>=<span class="string">"-13"</span> <span class="attr">on</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"175"</span> <span class="attr">y</span>=<span class="string">"-13"</span> <span class="attr">on</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"51"</span> <span class="attr">y</span>=<span class="string">"99"</span> <span class="attr">on</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pt</span> <span class="attr">x</span>=<span class="string">"42"</span> <span class="attr">y</span>=<span class="string">"189"</span> <span class="attr">on</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">contour</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">instructions</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">TTGlyph</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>在上面代码中，有 x 和 y，好像就是坐标，这些代码好像就是在描述一个字体的形状。来想想，即便是字体文件刷新了，里面神秘代码 uni<em>**</em> 变了，但是最后映射出的字符形状是不会改变的，因此可以说，只要我们找出一套映射规律，我们用第二套字体文件中的 x 和 y 坐标去和第一套中的 x 和 y 对比，只要是相同的数据，也就是“描述一个字体的形状轨迹”是相同的，那就可以正确解析第二套字体，第三套，第四套。。。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fontTools.ttLib <span class="keyword">import</span> TTFont</span><br><span class="line"></span><br><span class="line">font1 = TTFont(<span class="string">'4e2d0a51ee699f4d82980ae5927f21e12084.woff'</span>)</span><br><span class="line">obj_list1 = font1.getGlyphNames()[<span class="number">1</span>:<span class="number">-1</span>]</span><br><span class="line">uni_list1=font1.getGlyphOrder()[<span class="number">2</span>:]</span><br><span class="line">base_dict = &#123;</span><br><span class="line">    <span class="string">'uniEB10'</span>: <span class="string">'0'</span>,</span><br><span class="line">    <span class="string">'uniF819'</span>: <span class="string">'4'</span>,</span><br><span class="line">    <span class="string">'uniED1E'</span>: <span class="string">'9'</span>,</span><br><span class="line">    <span class="string">'uniF02C'</span>: <span class="string">'2'</span>,</span><br><span class="line">    <span class="string">'uniF284'</span>: <span class="string">'6'</span>,</span><br><span class="line">    <span class="string">'uniE8CD'</span>: <span class="string">'5'</span>,</span><br><span class="line">    <span class="string">'uniF75A'</span>: <span class="string">'1'</span>,</span><br><span class="line">    <span class="string">'uniF18C'</span>: <span class="string">'7'</span>,</span><br><span class="line">    <span class="string">'uniE6DC'</span>: <span class="string">'3'</span>,</span><br><span class="line">    <span class="string">'uniF455'</span>: <span class="string">'8'</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">font2=TTFont(<span class="string">'7204f967cd9de2d94a296851532a76de2076.woff'</span>)</span><br><span class="line">obj_list2=font2.getGlyphNames()[<span class="number">1</span>:<span class="number">-1</span>]</span><br><span class="line">uni_list2=font2.getGlyphOrder()[<span class="number">2</span>:]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> uni2 <span class="keyword">in</span> uni_list2:</span><br><span class="line">    obj2 = font2[<span class="string">'glyf'</span>][uni2]</span><br><span class="line">    <span class="keyword">for</span> uni1 <span class="keyword">in</span> uni_list1:</span><br><span class="line">        obj1 = font1[<span class="string">'glyf'</span>][uni1]</span><br><span class="line">        <span class="keyword">if</span> obj1 == obj2:</span><br><span class="line">            print(uni2, base_dict[uni1])</span><br></pre></td></tr></table></figure>
-<h1 id="内容替换"><a href="#内容替换" class="headerlink" title="内容替换"></a>内容替换</h1><p>最难的地方攻破了，就可以对源代码中的字符进行替换工作了。</p>
-<h1 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
+        
       
     </div>
 
@@ -585,7 +571,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://tangx1.com/maoyan_encrypt/" title="Python爬虫--猫眼加密字符">https://tangx1.com/maoyan_encrypt/</a>
+    <a href="https://tangx1.com/pyppeteer/" title="pyppeteer">https://tangx1.com/pyppeteer/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -607,6 +593,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+          
+            <a href="/tags/自动化/" rel="tag"><i class="fa fa-tag"></i> 自动化</a>
+          
+        </div>
+      
       
 
       
@@ -617,8 +611,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/qiniu/" rel="next" title="七牛云数据迁移至网易nos">
-                <i class="fa fa-chevron-left"></i> 七牛云数据迁移至网易nos
+              <a href="/python-with/" rel="next" title="使用with结构打开n个文件">
+                <i class="fa fa-chevron-left"></i> 使用with结构打开n个文件
               </a>
             
           </div>
@@ -626,10 +620,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/Pycharm/" rel="prev" title="Pycharm">
-                Pycharm <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -678,17 +668,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <div class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -822,23 +803,6 @@
         </div>
       </div>
 
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#查找字体源"><span class="nav-number">1.</span> <span class="nav-text">查找字体源</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字体解析"><span class="nav-number">2.</span> <span class="nav-text">字体解析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内容替换"><span class="nav-number">3.</span> <span class="nav-text">内容替换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#完整代码"><span class="nav-number">4.</span> <span class="nav-text">完整代码</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
       
 
       

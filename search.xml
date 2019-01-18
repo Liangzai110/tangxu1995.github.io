@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[使用with结构打开多个文件]]></title>
-    <url>%2Fpython-with%2F</url>
+    <title><![CDATA[pyppeteer]]></title>
+    <url>%2Fpyppeteer%2F</url>
     <content type="text"></content>
+      <categories>
+        <category>爬虫</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>自动化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[使用with结构打开n个文件]]></title>
+    <url>%2Fpython-with%2F</url>
+    <content type="text"><![CDATA[对一个文件读写有时候在爬虫中对最后数据的处理可能是将其存入某个文件内，那么此时就可以使用 with 语句对某个文件进行操作。 写入一个文件12with open(filename1, 'w') as fp: fp.write(item) 读取一个文件12with open(filename1, 'r') as fp: data = fp.read() 对多个文件进行读写将 A 文件内容写入 B 文件123with open(A,'r') as fp1 , open(B,'a') as fp2: for line in fp1: fp2.write(line) 同时读取 A B C 三个文件同时打开三个文件，文件行数一样，要求实现每个文件依次读取一行，然后输出，我们先来看比较容易想到的写法： 1234567with open(A, 'rb') as fp1: with open(B, 'rb') as fp2: with open(C, 'rb') as fp3: for i in fp1: j = fp2.readline() k = fp3.readline() print(i, j, k) 注意这里只能对单个文件进行for循环读取，不能写成：12for i, j, k in fp1, fp2, fp3: print(i, j, k) 但可使用强大的zip操作：12for i, j, k in zip(fp1, fp2, fp3): print(i, j, k) 这样层层的嵌套未免啰嗦，with结构支持一种更简洁的写法：12345with open(A, 'rb') as fp1, open(B, 'rb') as fp2, open(C, 'rb') as fp3: for i in fp1: j = fp2.readline() k = fp3.readline() print(i, j, k) 或者使用更为优雅的写法，此时需要 contextlib 语法糖：12345from contextlib improt ExitStackwith ExitStack() as stack: files = [stack.enter_context(open(fname)) for fname in [A, B, C]] for i, j, k in zip(files[0], files[1], files[2]): print(i, j, k)]]></content>
   </entry>
   <entry>
     <title><![CDATA[mysql]]></title>

@@ -144,7 +144,7 @@
 <meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python中的元类(metaclass)">
-<meta property="og:url" content="http://yoursite.com/metaclass/index.html">
+<meta property="og:url" content="https://tangx1.com/metaclass/index.html">
 <meta property="og:site_name" content="2048">
 <meta property="og:description" content="在看一些框架源代码的过程中碰到很多元类的实例，看起来很吃力很晦涩；在看python cookbook中关于元类创建单例模式的那一节有些疑惑。因此花了几天时间研究下元类这个概念。通过学习元类，我对python的面向对象有了更加深入的了解。这里将一篇写的非常好的文章基本照搬过来吧，这是一篇在Stack overflow上很热的帖子，我看 http://blog.jobbole.com/21351/ 这">
 <meta property="og:locale" content="zh-CN">
@@ -160,7 +160,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/metaclass/">
+  <link rel="canonical" href="https://tangx1.com/metaclass/">
 
 
 
@@ -419,7 +419,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/metaclass/">
+    <link itemprop="mainEntityOfPage" href="https://tangx1.com/metaclass/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tang">
@@ -544,6 +544,29 @@
     
 
     
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Tang</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://tangx1.com/metaclass/" title="Python中的元类(metaclass)">https://tangx1.com/metaclass/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
 
     <div>
     
@@ -662,7 +685,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -736,7 +759,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">12</span>
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">标签</span>
                   
                 </div>
@@ -755,6 +780,15 @@
 
           
 
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
           
 
           
@@ -823,8 +857,28 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共18.2k字</span>
+  <span class="post-meta-divider">|</span>
+  <span class="post-count">博客全站共18.6k字</span>
 </div>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("02/14/2018 12:49:00");//此处修改你的建站时间或者网站上线时间 
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+    } 
+setInterval("createtime()",250);
+</script>
+
 
         
 

@@ -140,14 +140,17 @@
 
 
 
-  <meta property="og:type" content="article">
-<meta property="og:title" content="使用with结构打开多个文件">
-<meta property="og:url" content="http://yoursite.com/python-with/index.html">
+  <meta name="description" content="with 语句适用于对资源进行访问的场合，确保不管使用过程中是否发生异常都会执行必要的“清理”操作，释放资源，比如文件使用后自动关闭、线程中锁的自动获取和释放等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用with结构打开n个文件">
+<meta property="og:url" content="https://tangx1.com/python-with/index.html">
 <meta property="og:site_name" content="2048">
+<meta property="og:description" content="with 语句适用于对资源进行访问的场合，确保不管使用过程中是否发生异常都会执行必要的“清理”操作，释放资源，比如文件使用后自动关闭、线程中锁的自动获取和释放等。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-18T09:00:36.063Z">
+<meta property="og:updated_time" content="2019-01-18T10:49:48.900Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用with结构打开多个文件">
+<meta name="twitter:title" content="使用with结构打开n个文件">
+<meta name="twitter:description" content="with 语句适用于对资源进行访问的场合，确保不管使用过程中是否发生异常都会执行必要的“清理”操作，释放资源，比如文件使用后自动关闭、线程中锁的自动获取和释放等。">
 
 
 
@@ -156,7 +159,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/python-with/">
+  <link rel="canonical" href="https://tangx1.com/python-with/">
 
 
 
@@ -166,7 +169,7 @@
   };
 </script>
 
-  <title>使用with结构打开多个文件 | 2048</title>
+  <title>使用with结构打开n个文件 | 2048</title>
   
 
 
@@ -415,7 +418,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/python-with/">
+    <link itemprop="mainEntityOfPage" href="https://tangx1.com/python-with/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tang">
@@ -432,7 +435,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">使用with结构打开多个文件
+          <h1 class="post-title" itemprop="name headline">使用with结构打开n个文件
 
               
             
@@ -482,7 +485,7 @@
 
           
           
-            <span id="/python-with/" class="leancloud_visitors" data-flag-title="使用with结构打开多个文件">
+            <span id="/python-with/" class="leancloud_visitors" data-flag-title="使用with结构打开n个文件">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -500,6 +503,8 @@
           
 
           
+            <div class="post-description">with 语句适用于对资源进行访问的场合，确保不管使用过程中是否发生异常都会执行必要的“清理”操作，释放资源，比如文件使用后自动关闭、线程中锁的自动获取和释放等。</div>
+          
 
         </div>
       </header>
@@ -514,7 +519,17 @@
       
 
       
-        
+        <h1 id="对一个文件读写"><a href="#对一个文件读写" class="headerlink" title="对一个文件读写"></a>对一个文件读写</h1><p>有时候在爬虫中对最后数据的处理可能是将其存入某个文件内，那么此时就可以使用 with 语句对某个文件进行操作。</p>
+<h2 id="写入一个文件"><a href="#写入一个文件" class="headerlink" title="写入一个文件"></a>写入一个文件</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open(filename1, <span class="string">'w'</span>) <span class="keyword">as</span> fp:</span><br><span class="line">    fp.write(item)</span><br></pre></td></tr></table></figure>
+<h2 id="读取一个文件"><a href="#读取一个文件" class="headerlink" title="读取一个文件"></a>读取一个文件</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open(filename1, <span class="string">'r'</span>) <span class="keyword">as</span> fp:</span><br><span class="line">    data = fp.read()</span><br></pre></td></tr></table></figure>
+<h1 id="对多个文件进行读写"><a href="#对多个文件进行读写" class="headerlink" title="对多个文件进行读写"></a>对多个文件进行读写</h1><h2 id="将-A-文件内容写入-B-文件"><a href="#将-A-文件内容写入-B-文件" class="headerlink" title="将 A 文件内容写入 B 文件"></a>将 A 文件内容写入 B 文件</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open(A,<span class="string">'r'</span>) <span class="keyword">as</span> fp1 , open(B,<span class="string">'a'</span>) <span class="keyword">as</span> fp2:</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> fp1:</span><br><span class="line">        fp2.write(line)</span><br></pre></td></tr></table></figure>
+<h2 id="同时读取-A-B-C-三个文件"><a href="#同时读取-A-B-C-三个文件" class="headerlink" title="同时读取 A B C 三个文件"></a>同时读取 A B C 三个文件</h2><p>同时打开三个文件，文件行数一样，要求实现每个文件依次读取一行，然后输出，我们先来看比较容易想到的写法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open(A, <span class="string">'rb'</span>) <span class="keyword">as</span> fp1:</span><br><span class="line">    <span class="keyword">with</span> open(B, <span class="string">'rb'</span>) <span class="keyword">as</span> fp2:</span><br><span class="line">        <span class="keyword">with</span> open(C, <span class="string">'rb'</span>) <span class="keyword">as</span> fp3:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> fp1:</span><br><span class="line">                j = fp2.readline()</span><br><span class="line">                k = fp3.readline()</span><br><span class="line">                print(i, j, k)</span><br></pre></td></tr></table></figure>
+<p>注意这里只能对单个文件进行for循环读取，不能写成：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i, j, k <span class="keyword">in</span> fp1, fp2, fp3:</span><br><span class="line">    print(i, j, k)</span><br></pre></td></tr></table></figure></p>
+<p>但可使用强大的zip操作：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i, j, k <span class="keyword">in</span> zip(fp1, fp2, fp3):</span><br><span class="line">    print(i, j, k)</span><br></pre></td></tr></table></figure></p>
+<p>这样层层的嵌套未免啰嗦，with结构支持一种更简洁的写法：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open(A, <span class="string">'rb'</span>) <span class="keyword">as</span> fp1, open(B, <span class="string">'rb'</span>) <span class="keyword">as</span> fp2, open(C, <span class="string">'rb'</span>) <span class="keyword">as</span> fp3:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> fp1:</span><br><span class="line">        j = fp2.readline()</span><br><span class="line">        k = fp3.readline()</span><br><span class="line">        print(i, j, k)</span><br></pre></td></tr></table></figure></p>
+<p>或者使用更为优雅的写法，此时需要 <a href="https://docs.python.org/3/library/contextlib.html" target="_blank" rel="noopener">contextlib</a> 语法糖：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> contextlib improt ExitStack</span><br><span class="line"><span class="keyword">with</span> ExitStack() <span class="keyword">as</span> stack:</span><br><span class="line">    files = [stack.enter_context(open(fname)) <span class="keyword">for</span> fname <span class="keyword">in</span> [A, B, C]]</span><br><span class="line">    <span class="keyword">for</span> i, j, k <span class="keyword">in</span> zip(files[<span class="number">0</span>], files[<span class="number">1</span>], files[<span class="number">2</span>]):</span><br><span class="line">        print(i, j, k)</span><br></pre></td></tr></table></figure></p>
+
       
     </div>
 
@@ -531,6 +546,29 @@
     
     
 
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Tang</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://tangx1.com/python-with/" title="使用with结构打开n个文件">https://tangx1.com/python-with/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
     
 
     <div>
@@ -565,6 +603,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/pyppeteer/" rel="prev" title="pyppeteer">
+                pyppeteer <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -613,8 +655,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -631,7 +682,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -705,7 +756,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">12</span>
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">标签</span>
                   
                 </div>
@@ -725,6 +778,15 @@
           
 
           
+             <div class="cc-license motion-element" itemprop="license">
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
 
           
           
@@ -737,6 +799,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#对一个文件读写"><span class="nav-number">1.</span> <span class="nav-text">对一个文件读写</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#写入一个文件"><span class="nav-number">1.1.</span> <span class="nav-text">写入一个文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#读取一个文件"><span class="nav-number">1.2.</span> <span class="nav-text">读取一个文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对多个文件进行读写"><span class="nav-number">2.</span> <span class="nav-text">对多个文件进行读写</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#将-A-文件内容写入-B-文件"><span class="nav-number">2.1.</span> <span class="nav-text">将 A 文件内容写入 B 文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同时读取-A-B-C-三个文件"><span class="nav-number">2.2.</span> <span class="nav-text">同时读取 A B C 三个文件</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -775,8 +854,28 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共18.2k字</span>
+  <span class="post-meta-divider">|</span>
+  <span class="post-count">博客全站共18.6k字</span>
 </div>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("02/14/2018 12:49:00");//此处修改你的建站时间或者网站上线时间 
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+    } 
+setInterval("createtime()",250);
+</script>
+
 
         
 
