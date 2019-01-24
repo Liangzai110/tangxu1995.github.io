@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tangx1.com/"/>
-  <updated>2019-01-23T15:33:22.333Z</updated>
+  <updated>2019-01-24T09:18:57.651Z</updated>
   <id>https://tangx1.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>破解有道翻译js加密参数</title>
+    <link href="https://tangx1.com/youdao/"/>
+    <id>https://tangx1.com/youdao/</id>
+    <published>2019-01-24T09:07:50.000Z</published>
+    <updated>2019-01-24T09:18:57.651Z</updated>
+    
+    <content type="html"><![CDATA[<p>这次要用程序实现一个简单的翻译器，</p>]]></content>
+    
+    <summary type="html">
+    
+      有时候会遇到某些网站使用 js 技术对将要传输的数据进行加密处理做反爬虫措施，经过加密传输的就是密文，但是加密过程一定是在浏览器完成，也就是一定会把 js 代码暴露给使用者，因此可以通过阅读加密算法，从而模拟出加密过程，最后达到破解的目的。
+    
+    </summary>
+    
+      <category term="Python" scheme="https://tangx1.com/categories/Python/"/>
+    
+      <category term="爬虫" scheme="https://tangx1.com/categories/Python/%E7%88%AC%E8%99%AB/"/>
+    
+    
+      <category term="加密" scheme="https://tangx1.com/tags/%E5%8A%A0%E5%AF%86/"/>
+    
+      <category term="js" scheme="https://tangx1.com/tags/js/"/>
+    
+  </entry>
   
   <entry>
     <title>Scrapy对接Selenium京东爬虫</title>
@@ -190,9 +216,9 @@
     
       <category term="爬虫" scheme="https://tangx1.com/tags/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="Python" scheme="https://tangx1.com/tags/Python/"/>
-    
       <category term="Scrapy" scheme="https://tangx1.com/tags/Scrapy/"/>
+    
+      <category term="Python" scheme="https://tangx1.com/tags/Python/"/>
     
   </entry>
   
@@ -214,9 +240,9 @@
     
       <category term="爬虫" scheme="https://tangx1.com/tags/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="Python" scheme="https://tangx1.com/tags/Python/"/>
-    
       <category term="Scrapy" scheme="https://tangx1.com/tags/Scrapy/"/>
+    
+      <category term="Python" scheme="https://tangx1.com/tags/Python/"/>
     
       <category term="验证码" scheme="https://tangx1.com/tags/%E9%AA%8C%E8%AF%81%E7%A0%81/"/>
     
@@ -386,9 +412,9 @@
     
       <category term="爬虫" scheme="https://tangx1.com/tags/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="Python" scheme="https://tangx1.com/tags/Python/"/>
-    
       <category term="Scrapy" scheme="https://tangx1.com/tags/Scrapy/"/>
+    
+      <category term="Python" scheme="https://tangx1.com/tags/Python/"/>
     
   </entry>
   
@@ -426,28 +452,6 @@
       美团网的美食信息，
     
     </summary>
-    
-    
-      <category term="爬虫" scheme="https://tangx1.com/tags/%E7%88%AC%E8%99%AB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python爬虫之淘宝(二)</title>
-    <link href="https://tangx1.com/taobaospider2/"/>
-    <id>https://tangx1.com/taobaospider2/</id>
-    <published>2018-04-18T08:00:33.000Z</published>
-    <updated>2019-01-15T02:49:22.537Z</updated>
-    
-    <content type="html"><![CDATA[<hr><p><img src="https://hexo-pics.nos-eastchina1.126.net/tb/tb-logo.png" alt=""></p><hr><p>上一篇介绍了如何用 selenium 自动化工具去帮助爬取淘宝商品的各项数据，但是，我发现，淘宝的网页源代码中就包含有宝贝信息，信息被放在了 script 标签中，既然信息被包含在源代码中，那就证明可以通过正则或者其它的网页解析方式可以获取到需要的信息，因此这篇就来写一写对于淘宝商品来说更为简单的小爬虫。</p><p>这次的流程就比较简单了，先做好准备工作：</p><p>1.获取网页源代码。</p><p>2.使用网页解析工具进行解析，构造翻页网址，提取所需信息。</p><p>3.整理并保存信息。</p><hr><h1 id="获取网页源代码"><a href="#获取网页源代码" class="headerlink" title="获取网页源代码"></a>获取网页源代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.62 Safari/537.36'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 搜索关键词为python的商品列表页</span></span><br><span class="line">url = <span class="string">'https://s.taobao.com/search?q=python'</span></span><br><span class="line"><span class="comment"># 请求网页</span></span><br><span class="line">response = requests.get(url, headers=headers)</span><br><span class="line">print(response.text)</span><br></pre></td></tr></table></figure><p>通过 requests 的 get 方法请求网页之后，得到网页源代码。</p><p><img src="https://hexo-pics.nos-eastchina1.126.net/tb/taobao2-1.jpg" alt=""></p><h1 id="提取信息"><a href="#提取信息" class="headerlink" title="提取信息"></a>提取信息</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">title = re.findall(<span class="string">r'"raw_title":"(.`?)"'</span>, response.text, re.I)</span><br><span class="line">price = re.findall(<span class="string">r'"view_price":"(.`?)"'</span>, response.text, re.I)</span><br><span class="line">location = re.findall(<span class="string">r'"item_loc":"(.`?)"'</span>, response.text, re.I)</span><br><span class="line">n = len(title)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">    print(title[i], price[i], location[i])</span><br></pre></td></tr></table></figure><p>在这里只对商品的标题，价格和发货地进行了正则匹配，因为它们都是列表，要想让宝贝信息都一一对应的显示出来，就要进行遍历，最后把宝贝信息都进行输出。</p><p><img src="https://hexo-pics.nos-eastchina1.126.net/tb/taobao2-2.jpg" alt=""></p><h1 id="整理信息"><a href="#整理信息" class="headerlink" title="整理信息"></a>整理信息</h1><p>获取到了宝贝信息之后我们就可以把它们存入文件或者数据库了。这里我们先把它们存入文件。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">file = open(<span class="string">'taobao.txt'</span>, <span class="string">'a'</span>, encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">n = len(title)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">    info = str(page ` <span class="number">44</span> + i + <span class="number">1</span>) + <span class="string">'标题：'</span>+ title[i] + <span class="string">'\n'</span> + <span class="string">'价格：'</span> + price[i] + <span class="string">'\n'</span> + <span class="string">'发货地：'</span> + location[i] + <span class="string">'\n'</span></span><br><span class="line">    file.write(info)</span><br><span class="line">file.close()</span><br></pre></td></tr></table></figure><p><img src="https://hexo-pics.nos-eastchina1.126.net/tb/taobao2-3.jpg" alt=""></p><h1 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.62 Safari/537.36'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">payload = &#123;<span class="string">'q'</span>:<span class="string">'python'</span>, <span class="string">'s'</span>:<span class="string">'1'</span>, <span class="string">'ie'</span>:<span class="string">'utf8'</span>&#125;</span><br><span class="line">file = open(<span class="string">'taobao.txt'</span>, <span class="string">'a'</span>, encoding=<span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> page <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">    payload[<span class="string">'s'</span>] = <span class="number">44</span> ` page + <span class="number">1</span></span><br><span class="line">    url = <span class="string">'https://s.taobao.com/search?q=python'</span></span><br><span class="line">    response = requests.get(url, params=payload, headers=headers)</span><br><span class="line">    title = re.findall(<span class="string">r'"raw_title":"(.`?)"'</span>, response.text, re.I)</span><br><span class="line">    price = re.findall(<span class="string">r'"view_price":"(.`?)"'</span>, response.text, re.I)</span><br><span class="line">    location = re.findall(<span class="string">r'"item_loc":"(.`?)"'</span>, response.text, re.I)</span><br><span class="line">    n = len(title)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">        info = str(page ` <span class="number">44</span> + i + <span class="number">1</span>) + <span class="string">'标题：'</span>+ title[i] + <span class="string">'\n'</span> + <span class="string">'价格：'</span> + price[i] + <span class="string">'\n'</span> + <span class="string">'发货地：'</span> + location[i] + <span class="string">'\n'</span></span><br><span class="line">        file.write(info)</span><br><span class="line">file.close()</span><br></pre></td></tr></table></figure><hr>]]></content>
-    
-    <summary type="html">
-    
-      上一篇介绍了如何用 selenium 自动化工具去帮助爬取淘宝商品的各项数据，但是，我发现，淘宝的网页源代码中就包含有宝贝信息，信息被放在了 script 标签中，既然信息被包含在源代码中，那就证明可以通过正则或者其它的网页解析方式可以获取到需要的信息，因此这篇就来写一写对于淘宝商品来说更为简单的小爬虫。
-    
-    </summary>
-    
-      <category term="Python" scheme="https://tangx1.com/categories/Python/"/>
     
     
       <category term="爬虫" scheme="https://tangx1.com/tags/%E7%88%AC%E8%99%AB/"/>
