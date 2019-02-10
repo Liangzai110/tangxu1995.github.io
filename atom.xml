@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tangx1.com/"/>
-  <updated>2019-02-10T11:27:57.350Z</updated>
+  <updated>2019-02-10T11:33:21.212Z</updated>
   <id>https://tangx1.com/</id>
   
   <author>
@@ -21,16 +21,13 @@
     <link href="https://tangx1.com/unicode/"/>
     <id>https://tangx1.com/unicode/</id>
     <published>2019-02-10T11:20:01.000Z</published>
-    <updated>2019-02-10T11:27:57.350Z</updated>
+    <updated>2019-02-10T11:33:21.212Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Python3-unicode转中文"><a href="#Python3-unicode转中文" class="headerlink" title="Python3 unicode转中文"></a>Python3 unicode转中文</h1><p>今天使用 python3.7 版本写爬虫的时候输出信息应该是中文，但是实际是显示为中文的 unicode 的形式，后去查资料后，有方法说使用 decode 方法，但是我使用 decode 方法却提示我 <code>AttributeError: &#39;str&#39; object has no attribute &#39;decode&#39;</code> 错误，继续查找资料发现 Python3 以上取消了 decode 方法，所以直接对字符串进行 decode 操作就会报错。正确操作方式如下：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.encode(<span class="string">'utf-8'</span>).decode(<span class="string">'unicode-escape'</span>)</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;h1 id=&quot;Python3-unicode转中文&quot;&gt;&lt;a href=&quot;#Python3-unicode转中文&quot; class=&quot;headerlink&quot; title=&quot;Python3 unicode转中文&quot;&gt;&lt;/a&gt;Python3 unicode转中文&lt;/h1&gt;&lt;p&gt;今天使用 p
-      
+      此篇文章中记录了笔者在爬虫学习过程中遇到的问题及解决办法，方便日后查找问题。解决办法可能来自网上搜索或自我探索所得，学习不止，问题不断，此篇会持续更新。
     
     </summary>
     
